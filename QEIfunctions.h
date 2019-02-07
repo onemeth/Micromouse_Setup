@@ -1,23 +1,29 @@
-/* 
- * File:   QEIfunctions.h
- * Author: ollie
- *
- * Created on February 7, 2019, 11:51 AM
- */
+/********************************************************
+ * Description                                          
+ *      File name : QEIfunctions.h                              
+ *      Project   : Micromouse                       
+ *      Author(s) : O.Németh                            
+ *      Device    : Micromouse                        
+ *      Function  : QEI config file               
+ ********************************************************
+ * Change History                                       
+ *      Released  : 27-01-2019                         
+ *      Rev       : 1.0                                
+ *      Alt A     :                                    
+ ********************************************************/
 
-#ifndef QEIFUNCTIONS_H
-#define	QEIFUNCTIONS_H
+/***** GAURD *****/ 
+#ifndef QEIfunctions_HEADER
+#define	QEIfunctions_HEADER
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+/***** HEADER FILES *****/
+#include <xc.h> 
 
+/***** DEFINITIONS *****/
 
+/***** PROTOTYPES *****/
+void QEIsetup(void);
 
-
-#ifdef	__cplusplus
-}
-#endif
-
-#endif	/* QEIFUNCTIONS_H */
+/***** END GUARD *****/
+#endif	
 

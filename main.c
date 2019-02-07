@@ -44,7 +44,8 @@
 #include "PWMfunctions.h"
 #include "UARTfunctions.h"
 #include "ADCfunctions.h"
-#include"miscFunctions.h"
+#include "miscFunctions.h"
+#include "QEIfunctions.h"
 
 /***** CONFIGURATION BITS *****/
 //primary oscillator with 8 times pll no clock switching

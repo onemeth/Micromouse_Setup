@@ -17,7 +17,7 @@
 #include"UARTfunctions.h"
 #include"gpIO.h"
 #include <stdio.h>               // for sprintf
-#include<string.h>
+#include <string.h>
 
 /***** FUNCTIONS *****/
 
