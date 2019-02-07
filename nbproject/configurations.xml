@@ -10,6 +10,7 @@
       <itemPath>UARTfunctions.h</itemPath>
       <itemPath>ADCfunctions.h</itemPath>
       <itemPath>miscFunctions.h</itemPath>
+      <itemPath>QEIfunctions.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,6 +26,7 @@
       <itemPath>UARTfunctions.c</itemPath>
       <itemPath>ADCfunctions.c</itemPath>
       <itemPath>miscFunctions.c</itemPath>
+      <itemPath>QEIfunctions.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
