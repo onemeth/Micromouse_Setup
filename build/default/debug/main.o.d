@@ -5,4 +5,5 @@ Timer1Functions.h  \
  PWMfunctions.h  \
 UARTfunctions.h  \
 ADCfunctions.h  \
-miscFunctions.h 
+miscFunctions.h  \
+ QEIfunctions.h 

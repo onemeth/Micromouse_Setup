@@ -24,9 +24,9 @@
       <itemPath>PWMfunctions.c</itemPath>
       <itemPath>Timer1Functions.c</itemPath>
       <itemPath>UARTfunctions.c</itemPath>
-      <itemPath>ADCfunctions.c</itemPath>
       <itemPath>miscFunctions.c</itemPath>
       <itemPath>QEIfunctions.c</itemPath>
+      <itemPath>ADCfunctions.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

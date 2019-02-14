@@ -22,7 +22,40 @@
 #define lenstr 100                  // Define string length
 
 /***** FUNCTIONS *****/
+/********************************************************
+ * Description                                          
+ *      Name      : UART1Setup                                                 
+ *      Author(s) : O.Nemeth                                                  
+ *      Function  : Set up function for UART1 for 
+ *                  communication between PICs
+ ********************************************************
+ * Change History                                       
+ *      Released  : 14-02-2019                          
+ *      Rev       : 1.0                                 
+ *      Alt A     :                                     
+ ********************************************************/
+void UART1Setup(void){
+    U1MODEbits.UARTEN   = 0;      // Disable UART during config
+    U1BRG               = 16;     // Choose appropriate baud rate
+    U1MODEbits.LPBACK   = 0;      // Disable loopback mode
+    U1MODEbits.WAKE     = 0;      // Do not wake-up on serial activity (dont care) 
+    U1MODEbits.ABAUD    = 0;      // No auto-baud detection
+    U1MODEbits.PDSEL    = 0;      // 8 databits, no parity
+    U1MODEbits.STSEL    = 0;      // One stop bit
+    U1STAbits.URXISEL   = 0;      // Receive interrupt when 1 character arrives
+    // For RX (Receive)
+    IFS0bits.U1RXIF     = 0;      // Clear rx interrupt flag
+    IPC2bits.U1RXIP     = 3;      // Set receive interrupt priority
+    IEC0bits.U1RXIE     = 1;      // Enable receive interupts
+    // For TX (Transmit))
+    IFS0bits.U1TXIF     = 0;      // Clear tx interrupt flag
+    IPC2bits.U1TXIP     = 3;
+    IEC0bits.U1TXIE     = 1;      // Enable UART Transmit interrupt
+    U1STAbits.UTXEN     = 1;      // Enable UART Tx
 
+    U1MODEbits.UARTEN   = 1;      // Now, enable UART!
+    U1STAbits.UTXEN     = 1;      // And enable transmission (order important)
+} 
 /********************************************************
  * Description                                          
  *      Name      : UART2Setup                                                 
@@ -37,26 +70,26 @@
  *      Alt A     :                                     
  ********************************************************/
 void UART2Setup(void){
-U2MODEbits.UARTEN   = 0;      // Disable UART during config
-U2BRG               = 16;     // Choose appropriate baud rate
-U2MODEbits.LPBACK   = 0;      // Disable loopback mode
-U2MODEbits.WAKE     = 0;      // Do not wake-up on serial activity (dont care) 
-U2MODEbits.ABAUD    = 0;      // No auto-baud detection
-U2MODEbits.PDSEL    = 0;      // 8 databits, no parity
-U2MODEbits.STSEL    = 0;      // One stop bit
-U2STAbits.URXISEL   = 0;      // Receive interrupt when 1 character arrives
-// For RX (Receive)
-IFS1bits.U2RXIF     = 0;      // Clear rx interrupt flag
-IPC6bits.U2RXIP     = 3;      // Set receive interrupt priority
-IEC1bits.U2RXIE     = 1;      // Enable receive interupts
-// For TX (Transmit))
-IFS1bits.U2TXIF     = 0;      // Clear tx interrupt flag
-IPC6bits.U2TXIP     = 3;
-IEC1bits.U2TXIE     = 1;      // Enable UART Transmit interrupt
-U2STAbits.UTXEN     = 1;      // Enable UART Tx
+    U2MODEbits.UARTEN   = 0;      // Disable UART during config
+    U2BRG               = 16;     // Choose appropriate baud rate
+    U2MODEbits.LPBACK   = 0;      // Disable loopback mode
+    U2MODEbits.WAKE     = 0;      // Do not wake-up on serial activity (dont care) 
+    U2MODEbits.ABAUD    = 0;      // No auto-baud detection
+    U2MODEbits.PDSEL    = 0;      // 8 databits, no parity
+    U2MODEbits.STSEL    = 0;      // One stop bit
+    U2STAbits.URXISEL   = 0;      // Receive interrupt when 1 character arrives
+    // For RX (Receive)
+    IFS1bits.U2RXIF     = 0;      // Clear rx interrupt flag
+    IPC6bits.U2RXIP     = 3;      // Set receive interrupt priority
+    IEC1bits.U2RXIE     = 1;      // Enable receive interupts
+    // For TX (Transmit))
+    IFS1bits.U2TXIF     = 0;      // Clear tx interrupt flag
+    IPC6bits.U2TXIP     = 3;
+    IEC1bits.U2TXIE     = 1;      // Enable UART Transmit interrupt
+    U2STAbits.UTXEN     = 1;      // Enable UART Tx
 
-U2MODEbits.UARTEN   = 1;      // Now, enable UART!
-U2STAbits.UTXEN     = 1;      // And enable transmission (order important)
+    U2MODEbits.UARTEN   = 1;      // Now, enable UART!
+    U2STAbits.UTXEN     = 1;      // And enable transmission (order important)
 }   
  /********************************************************
  * Description                                          
@@ -72,11 +105,11 @@ U2STAbits.UTXEN     = 1;      // And enable transmission (order important)
  ********************************************************/
 
 void mySendString(char *textString){           
-static int i, len;
-len = strlen(textString);                           // Determine the string length
-    for (i = 0 ; i < len; i++) { 
-        while (U2STAbits.UTXBF);                    // Wait while Tx buffer full
-        U2TXREG = textString[i];                    // Print string 
+    static int i, len;
+    len = strlen(textString);                           // Determine the string length
+        for (i = 0 ; i < len; i++) { 
+            while (U2STAbits.UTXBF);                    // Wait while Tx buffer full
+            U2TXREG = textString[i];                    // Print string 
     }
 }  
  /********************************************************
@@ -137,6 +170,41 @@ void decode(char str){
 }
 
 /***** INTERRUPT SERVICE ROUTINES *****/
+/********************************************************
+ * Description                                          
+ *      Name      : UART1                                                 
+ *      Author(s) : O.Nemeth                                                  
+ *      ISR       : Stores the received char from U2RXREG
+ *                  and send it for decoding             
+ ********************************************************
+ * Change History                                       
+ *      Released  : 22-11-2018                          
+ *      Rev       : 1.0                                 
+ *      Alt A     :                                     
+ ********************************************************/
+void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
+    IFS0bits.U1RXIF = 0;        // Clear the UART Receive Interrupt Flag
+//    char str;                   // Declare character 
+//    
+//    while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
+//        str = U2RXREG;          // Read one char at a time from the U2 RX register  
+//    decode(str);                // Call function to decode char
+}
+
+/********************************************************
+ * Description                                          
+ *      Name      : UART1                                                 
+ *      Author(s) : O.Nemeth                                                  
+ *      ISR       :              
+ ********************************************************
+ * Change History                                       
+ *      Released  : 22-11-2018                          
+ *      Rev       : 1.0                                 
+ *      Alt A     :                                     
+ ********************************************************/
+void __attribute__((interrupt, no_auto_psv)) _U1TXInterrupt(void){
+    IFS0bits.U1TXIF = 0;         // clear TX interrupt flag
+}
 
 /********************************************************
  * Description                                          

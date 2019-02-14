@@ -23,6 +23,7 @@
 
 
 /***** PROTOTYPES *****/
+void UART1Setup(void);
 void UART2Setup(void);
 void mySendString(char *);
 void decode(char);

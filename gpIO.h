@@ -30,10 +30,10 @@
 #define BUTTON      !PORTDbits.RD0      // Read from inverted button
 
 // Motor direction controls
-#define MTR_LB      LATEbits.LATE1      // LH motor backward rotation 
-#define MTR_LF      LATEbits.LATE3      // LH motor forward rotation 
-#define MTR_RF      LATEbits.LATE5      // RH motor forward rotation 
-#define MTR_RB      LATEbits.LATE8      // RH motor backard rotation 
+#define MTR_RF      LATEbits.LATE1      // RH motor forward rotation 
+#define MTR_RB      LATEbits.LATE3      // RH motor backward rotation 
+#define MTR_LB      LATEbits.LATE5      // LH motor backward rotation 
+#define MTR_LF      LATEbits.LATE8      // LH motor forward rotation 
 
 // IR TX
 #define TX_S        LATDbits.LATD1      // Side IR LED TX switch

@@ -15,11 +15,14 @@
 /***** HEADER FILES *****/
 #include "QEIfunctions.h"
 #include "UARTfunctions.h"
+#include "gpIO.h" 
 #include <stdio.h>               // for sprintf
 #include <string.h>
 
-/***** FUNCTIONS *****/
+/***** EXT VARS    *****/
+int rollover_counter;
 
+/***** FUNCTIONS *****/
 /********************************************************
  * Description                                          
  *      Name      : QEISetup                                                 
@@ -45,8 +48,10 @@ void QEIsetup(void){
     QEICONbits.TQCS     = 0;        // internal clock source (Tcy)
     DFLTCONbits.QEOUT   = 0;        // disable digital filters  
     // set initial counter value and maximum range
+    //MAXCNT              = 0xffff;   // set the highest possible time out
     MAXCNT              = 0xffff;   // set the highest possible time out
-    POSCNT              = 0x7fff;   // set POSCNT into middle of range
+    //POSCNT              = 0x7fff;   // set POSCNT into middle of range
+    POSCNT              = 0x7fff;   // set POSCNT into middle of range    
     // Configure Interrupt controller
     IFS2bits.QEIIF      = 0;        // clear interrupt flag
     IEC2bits.QEIIE      = 1;        // enable QEI interrupt
@@ -65,21 +70,23 @@ void QEIsetup(void){
  *      Rev       : 1.0                                 
  *      Alt A     :                                     
  ********************************************************/
-void __attribute__((interrupt, no_auto_psv)) _ADCInterrupt(void){
-    static int count=0;
-    char POSCNT_String[] = " POSCNT: ";
-    char result[10];
-    IFS2bits.QEIIF = 0; // clear interrupt flag
-    //if(POSCNT<32768)
-        // over-run condition caused interrupt
-    //else
-        // under-run condition caused interrupt
-    sprintf(result, "%d", POSCNT);
-    strcat(POSCNT_String, result);
-    if(count == 100){
-        mySendString(POSCNT_String);
-        count = 0;
-    }
-    count++;
+
+void __attribute__((interrupt, no_auto_psv)) _QEIInterrupt(void){
+    IFS2bits.QEIIF = 0;     // clear interrupt flag
+    int position;
+    
+    if(POSCNT<32768)        // over-run condition caused interrupt - hit maxcnt, over runs to 0 hence <32768
+        rollover_counter++;
+    else                    // under-run condition caused interrupt
+        rollover_counter--;
+    
+/* find out how many mm per pulse, inc a var by the mm value for every pulse to know distance*/
+    
+    char send_String[] = " POSITION: ";
+    char result[100];
+    sprintf(result, "%d", rollover_counter);
+    strcat(send_String, result);
+    mySendString(send_String);
+
 }
 

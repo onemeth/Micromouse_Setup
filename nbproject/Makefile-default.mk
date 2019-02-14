@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=gpIO.c main.c PWMfunctions.c Timer1Functions.c UARTfunctions.c ADCfunctions.c miscFunctions.c QEIfunctions.c
+SOURCEFILES_QUOTED_IF_SPACED=gpIO.c main.c PWMfunctions.c Timer1Functions.c UARTfunctions.c miscFunctions.c QEIfunctions.c ADCfunctions.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/gpIO.o ${OBJECTDIR}/main.o ${OBJECTDIR}/PWMfunctions.o ${OBJECTDIR}/Timer1Functions.o ${OBJECTDIR}/UARTfunctions.o ${OBJECTDIR}/ADCfunctions.o ${OBJECTDIR}/miscFunctions.o ${OBJECTDIR}/QEIfunctions.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/gpIO.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/PWMfunctions.o.d ${OBJECTDIR}/Timer1Functions.o.d ${OBJECTDIR}/UARTfunctions.o.d ${OBJECTDIR}/ADCfunctions.o.d ${OBJECTDIR}/miscFunctions.o.d ${OBJECTDIR}/QEIfunctions.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/gpIO.o ${OBJECTDIR}/main.o ${OBJECTDIR}/PWMfunctions.o ${OBJECTDIR}/Timer1Functions.o ${OBJECTDIR}/UARTfunctions.o ${OBJECTDIR}/miscFunctions.o ${OBJECTDIR}/QEIfunctions.o ${OBJECTDIR}/ADCfunctions.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/gpIO.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/PWMfunctions.o.d ${OBJECTDIR}/Timer1Functions.o.d ${OBJECTDIR}/UARTfunctions.o.d ${OBJECTDIR}/miscFunctions.o.d ${OBJECTDIR}/QEIfunctions.o.d ${OBJECTDIR}/ADCfunctions.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/gpIO.o ${OBJECTDIR}/main.o ${OBJECTDIR}/PWMfunctions.o ${OBJECTDIR}/Timer1Functions.o ${OBJECTDIR}/UARTfunctions.o ${OBJECTDIR}/ADCfunctions.o ${OBJECTDIR}/miscFunctions.o ${OBJECTDIR}/QEIfunctions.o
+OBJECTFILES=${OBJECTDIR}/gpIO.o ${OBJECTDIR}/main.o ${OBJECTDIR}/PWMfunctions.o ${OBJECTDIR}/Timer1Functions.o ${OBJECTDIR}/UARTfunctions.o ${OBJECTDIR}/miscFunctions.o ${OBJECTDIR}/QEIfunctions.o ${OBJECTDIR}/ADCfunctions.o
 
 # Source Files
-SOURCEFILES=gpIO.c main.c PWMfunctions.c Timer1Functions.c UARTfunctions.c ADCfunctions.c miscFunctions.c QEIfunctions.c
+SOURCEFILES=gpIO.c main.c PWMfunctions.c Timer1Functions.c UARTfunctions.c miscFunctions.c QEIfunctions.c ADCfunctions.c
 
 
 CFLAGS=
@@ -129,13 +129,6 @@ ${OBJECTDIR}/UARTfunctions.o: UARTfunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  UARTfunctions.c  -o ${OBJECTDIR}/UARTfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/UARTfunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/UARTfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/ADCfunctions.o: ADCfunctions.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ADCfunctions.o.d 
-	@${RM} ${OBJECTDIR}/ADCfunctions.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ADCfunctions.c  -o ${OBJECTDIR}/ADCfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADCfunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/ADCfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/miscFunctions.o: miscFunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/miscFunctions.o.d 
@@ -149,6 +142,13 @@ ${OBJECTDIR}/QEIfunctions.o: QEIfunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/QEIfunctions.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  QEIfunctions.c  -o ${OBJECTDIR}/QEIfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/QEIfunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/QEIfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ADCfunctions.o: ADCfunctions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADCfunctions.o.d 
+	@${RM} ${OBJECTDIR}/ADCfunctions.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADCfunctions.c  -o ${OBJECTDIR}/ADCfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADCfunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/ADCfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/gpIO.o: gpIO.c  nbproject/Makefile-${CND_CONF}.mk
@@ -186,13 +186,6 @@ ${OBJECTDIR}/UARTfunctions.o: UARTfunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  UARTfunctions.c  -o ${OBJECTDIR}/UARTfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/UARTfunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/UARTfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/ADCfunctions.o: ADCfunctions.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ADCfunctions.o.d 
-	@${RM} ${OBJECTDIR}/ADCfunctions.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ADCfunctions.c  -o ${OBJECTDIR}/ADCfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADCfunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/ADCfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/miscFunctions.o: miscFunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/miscFunctions.o.d 
@@ -206,6 +199,13 @@ ${OBJECTDIR}/QEIfunctions.o: QEIfunctions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/QEIfunctions.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  QEIfunctions.c  -o ${OBJECTDIR}/QEIfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/QEIfunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/QEIfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ADCfunctions.o: ADCfunctions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADCfunctions.o.d 
+	@${RM} ${OBJECTDIR}/ADCfunctions.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADCfunctions.c  -o ${OBJECTDIR}/ADCfunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADCfunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/ADCfunctions.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

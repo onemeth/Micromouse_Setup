@@ -98,7 +98,7 @@ void __attribute__((interrupt, no_auto_psv)) _ADCInterrupt(void){
     strcat(RX_String, result);
     
     if(count == 100){
-        mySendString(RX_String);
+        //mySendString(RX_String);
         count = 0;
     }
     count++;

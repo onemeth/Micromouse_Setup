@@ -27,12 +27,12 @@
  *        Pin 41:      RD2       TX_F           Front TX switch       Y
  *        Pin 38:      RD3       TX_P           Post TX switch        Y
  *        Pin 15:      PWM1L     PDC1           LH motor PWM          Y
- *        Pin 14:      RE1       MTR_LB         LH motor reverse      Y
+ *        Pin 14:      RE1       MTR_RF         RH motor forward      Y
  *        Pin 11:      PWM2L     PDC2           RH motor PWM          Y
- *        Pin 10:      RE3       MTR_LF         LH motor forward      Y
+ *        Pin 10:      RE3       MTR_RB         LH motor backward     Y
  *        Pin 9 :      PWM3L     PDC3           Buzzer                Y
- *        Pin 8 :      RE5       MTR_RF         RH motor forward      Y
- *        Pin 36:      QEB       MTR_RB         RH motor backwards    Y
+ *        Pin 8 :      RE5       MTR_LB         RH motor backward     Y
+ *        Pin 36:      QEB       MTR_LF         RH motor forward      Y
  *                           
  ********************************************************/
 
@@ -46,6 +46,9 @@
 #include "ADCfunctions.h"
 #include "miscFunctions.h"
 #include "QEIfunctions.h"
+
+#include <stdio.h>               // for sprintf
+#include <string.h>
 
 /***** CONFIGURATION BITS *****/
 //primary oscillator with 8 times pll no clock switching
@@ -64,18 +67,30 @@
 #pragma config HPOL = PWMxH_ACT_LO
 #pragma config PWMPIN = RST_PWMPIN
 
+/***** EXT VARS    *****/
+extern int rollover_counter;
+
 /***** MAIN *****/
 int main(void){
     gpIOSetup();                       // Configures the IO
     pwmSetup();                        // Configures the PWM generator
     timer1Setup();                     // Configures timer1 
+    UART1Setup();                      // Configures UART    
     UART2Setup();                      // Configures UART
     ADCsetup();
+    QEIsetup();
     
     int state1 = 0, state2 = 0, start = 0;
+    int rollover_counter = 0;
     TX_F = 1;
     buzz();
-    while(1){                          // Infinite loop       
+    
+                MTR_LF = 1;
+                MTR_LB = 0;
+                MTR_RF = 1;
+                MTR_RB = 0;
+    while(1){                          // Infinite loop  
+
         if (BUTTON && !state1){
             state1 = 1;
             start = 1;
@@ -84,24 +99,31 @@ int main(void){
             state1=0;
         
         while(start){ 
-            if(RX_LF <= 1 && RX_RF <= 1){
-                MTR_LF = 1;
-                MTR_LB = 0;
-                MTR_RF = 1;
-                MTR_RB = 0;
-            }
-            else if(RX_LF >= 4 && RX_RF >= 4){
-                MTR_LF = 0;
-                MTR_LB = 1;
-                MTR_RF = 0;
-                MTR_RB = 1;
-            }
-            else{
-                MTR_LF = 0;
-                MTR_LB = 0;
-                MTR_RF = 0;
-                MTR_RB = 0;
-            }
+            
+              // Sensor texting
+//            if(RX_LF <= 1 && RX_RF <= 1){
+//                MTR_LF = 1;
+//                MTR_LB = 0;
+//                MTR_RF = 1;
+//                MTR_RB = 0;
+//            }
+//            else if(RX_LF >= 4 && RX_RF >= 4){
+//                MTR_LF = 0;
+//                MTR_LB = 1;
+//                MTR_RF = 0;
+//                MTR_RB = 1;
+//            }
+//            else{
+//                MTR_LF = 0;
+//                MTR_LB = 0;
+//                MTR_RF = 0;
+//                MTR_RB = 0;
+//            }
+//            if(POSCNT< 703){
+//                MTR_LF = 1;
+//                MTR_LB = 0;
+//                MTR_RF = 1;
+//                MTR_RB = 0;
             if (BUTTON && !state2){
                 state2 = 1;
                 start = 0;
@@ -109,7 +131,8 @@ int main(void){
                 MTR_LB = 0;
                 MTR_RF = 0;
                 MTR_RB = 0;
-            }    
+            }  
+          
             if (state2 && !BUTTON)
                 state2=0;
             

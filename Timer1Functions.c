@@ -54,5 +54,22 @@ void timer1Setup(void){
  ********************************************************/
 void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){    
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
-    ADCON1bits.ASAM = 1;                    // start ADC sampling    
+    ADCON1bits.ASAM = 1;                    // start ADC sampling
+    static int count = 0;
+    float vel, angVel;
+    static int POSsample = 0;
+    
+    vel = (POSCNT - POSsample)*0.1;
+    POSsample = POSCNT;    
+    angVel = vel*(((2*3.14)/16)/(33*4));
+    
+    if(count==10){
+    char send_String[] = "Velocity: ";
+    char result[100];
+    sprintf(result, "%f", vel);
+    strcat(send_String, result);
+    mySendString(send_String);
+    count = 0;
+    }
+    count++;
 }                                           // End ISR

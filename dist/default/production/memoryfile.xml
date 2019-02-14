@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/MicroMouse-Setup.X.production.elf">
+  <executable name="dist/default/production/Micromouse_Setup.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>2048</length>
-      <used>310</used>
-      <free>1738</free>
+      <used>350</used>
+      <free>1698</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>48768</length>
-      <used>9507</used>
-      <free>39261</free>
+      <used>12273</used>
+      <free>36495</free>
     </memory>
   </executable>
 </project>

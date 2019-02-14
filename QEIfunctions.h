@@ -21,6 +21,7 @@
 
 /***** DEFINITIONS *****/
 
+
 /***** PROTOTYPES *****/
 void QEIsetup(void);
 
