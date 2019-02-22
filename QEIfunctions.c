@@ -73,20 +73,18 @@ void QEIsetup(void){
 
 void __attribute__((interrupt, no_auto_psv)) _QEIInterrupt(void){
     IFS2bits.QEIIF = 0;     // clear interrupt flag
-    int position;
     
     if(POSCNT<32768)        // over-run condition caused interrupt - hit maxcnt, over runs to 0 hence <32768
         rollover_counter++;
     else                    // under-run condition caused interrupt
         rollover_counter--;
     
-/* find out how many mm per pulse, inc a var by the mm value for every pulse to know distance*/
+    POSCNT = 0x7fff;
     
-    char send_String[] = " POSITION: ";
+    /*
     char result[100];
-    sprintf(result, "%d", rollover_counter);
-    strcat(send_String, result);
-    mySendString(send_String);
-
+    sprintf(result, "POSITION %d \n", rollover_counter);
+    mySendString(result);
+     */
 }
 

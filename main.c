@@ -80,65 +80,43 @@ int main(void){
     ADCsetup();
     QEIsetup();
     
-    int state1 = 0, state2 = 0, start = 0;
-    int rollover_counter = 0;
-    TX_F = 1;
-    buzz();
+    int state1 = 0, start = 0;
+    int TXon = 1;
+    TX_side(TXon);
+    TX_front(TXon);
+    TX_post(TXon);
     
-                MTR_LF = 1;
-                MTR_LB = 0;
-                MTR_RF = 1;
-                MTR_RB = 0;
-    while(1){                          // Infinite loop  
-
+    while(1){                          // Infinite loop  *
         if (BUTTON && !state1){
             state1 = 1;
             start = 1;
-        }    
-        if (state1 && !BUTTON)
-            state1=0;
+        }
+        if (state1 && !BUTTON){
+        state1=0;
+        }
         
-        while(start){ 
-            
-              // Sensor texting
-//            if(RX_LF <= 1 && RX_RF <= 1){
-//                MTR_LF = 1;
-//                MTR_LB = 0;
-//                MTR_RF = 1;
-//                MTR_RB = 0;
-//            }
-//            else if(RX_LF >= 4 && RX_RF >= 4){
-//                MTR_LF = 0;
-//                MTR_LB = 1;
-//                MTR_RF = 0;
-//                MTR_RB = 1;
-//            }
-//            else{
-//                MTR_LF = 0;
-//                MTR_LB = 0;
-//                MTR_RF = 0;
-//                MTR_RB = 0;
-//            }
-//            if(POSCNT< 703){
-//                MTR_LF = 1;
-//                MTR_LB = 0;
-//                MTR_RF = 1;
-//                MTR_RB = 0;
-            if (BUTTON && !state2){
-                state2 = 1;
-                start = 0;
-                MTR_LF = 0;
-                MTR_LB = 0;
-                MTR_RF = 0;
-                MTR_RB = 0;
-            }  
-          
-            if (state2 && !BUTTON)
-                state2=0;
-            
-            //}
+        if(start){   
+            delay(1000);
+            while(start){
+            if(RX_RF < 1 && RX_LF < 1)
+              Move_forwards();
+            else if((RX_RF > 2 || RX_LF > 2) && RX_LS > 2)
+                Turn_right();
+            else if((RX_RF > 1 || RX_LF > 1) && RX_RS > 2)
+                Turn_left();
+            else if((RX_RF > 1 && RX_LF > 1) && (RX_LS > 2 && RX_RS > 2))
+                Turn_180();    
+            else if(RX_RF > 1 && RX_LF > 1)
+                Turn_right(); 
+            else if (state1 && !BUTTON)
+            state1=0;
+            else if (BUTTON && !state1){
+            state1 = 1;
+            start = 0;
+            }
         }
     }
+  
     return 0;                          // We should never really return
 }                                      // End function
-
+}

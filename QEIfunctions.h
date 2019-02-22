@@ -24,7 +24,6 @@
 
 /***** PROTOTYPES *****/
 void QEIsetup(void);
-
 /***** END GUARD *****/
 #endif	
 

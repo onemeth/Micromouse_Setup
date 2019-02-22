@@ -2,19 +2,16 @@
 #include"miscFunctions.h"
 #include"gpIO.h"
 
-void delay(void){
-    int i=0;
-    while(i<3280){
-        i++;
+void delay(int timemS){
+    int i, j;
+    for(i=0; i<timemS; i++){
+        for(j=0; j<1958; j++){   
+        }
     }
 }
 
 void buzz(void){
     BUZZ = 1;
-    delay();
-    BUZZ = 0;
-    delay();
-    BUZZ = 1;
-    delay();
+    delay(1000);
     BUZZ = 0;
 }

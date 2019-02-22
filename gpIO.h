@@ -43,6 +43,18 @@
 /***** PROTOTYPES *****/
 void gpIOSetup(void);
 
+void Move_forwards(void);
+void Move_forwards_one_cell(void);
+void Move_backwards(void);
+void Turn_right(void);
+void Turn_left(void);
+void Turn_180(void);
+void Stop(void);
+
+void TX_side(int);
+void TX_front(int);
+void TX_post(int);
+
 /***** END GUARD *****/
 #endif	
 

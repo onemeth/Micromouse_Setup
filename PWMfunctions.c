@@ -35,8 +35,8 @@ void pwmSetup(void){
     PWMCON1bits.PEN3H = 0;      // Disable PWM 3 high-side driver     
     PTCONbits.PTEN    = 1;      // Switch on the PWM generator
     // Set duty cycle of PWM's
-    PDC1 = 2000;                // Set LH motor to 100% duty cycle
-    PDC2 = 2000;                // Set RH motor to 100% duty cycle
+    PDC1 = 1000;                // Set LH motor to 100% = 2000 duty cycle
+    PDC2 = 1000;                // Set RH motor to 100% = 2000 duty cycle
     PDC3 = 1000;                // Set buzzer to 50% duty cycle
 }   
 
