@@ -97,7 +97,7 @@ int main(void){
         
         if(start){   
             delay(1000);
-            while(1){
+            while(start){
             if(RX_RF < 1 && RX_LF < 1)
               Move_forwards();
             else if((RX_RF > 2 || RX_LF > 2) && RX_LS > 2)
@@ -116,7 +116,7 @@ int main(void){
             }
         }
     }
-    
+  
     return 0;                          // We should never really return
 }                                      // End function
 }

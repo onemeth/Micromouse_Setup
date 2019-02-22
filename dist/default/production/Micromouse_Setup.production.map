@@ -175,11 +175,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100              0x14ea          0x1f5f  (8031)
 .const                      0x15ea                 0xe            0x15  (21)
-.text                       0x15f8               0x522           0x7b3  (1971)
-.dinit                      0x1b1a                0xc0           0x120  (288)
-.text                       0x1bda               0x17c           0x23a  (570)
+.text                       0x15f8               0x51e           0x7ad  (1965)
+.dinit                      0x1b16                0xc0           0x120  (288)
+.text                       0x1bd6               0x17c           0x23a  (570)
 
-                 Total "program" memory used (bytes):         0x2a81  (10881) 22%
+                 Total "program" memory used (bytes):         0x2a7b  (10875) 22%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -300,45 +300,45 @@ External Symbols in Program Memory (by address):
                   0x001574                  ___floatdidf
                   0x001594                  ___floatundidf
                   0x0015f8                  _main
-                  0x00184a                  _UART1Setup
-                  0x001894                  _UART2Setup
-                  0x0018dc                  _mySendString
-                  0x001912                  _decode
-                  0x001a02                  _gpIOSetup
-                  0x001a1e                  _Move_forwards
-                  0x001a2c                  _Move_forwards_one_cell
-                  0x001a4a                  _Move_backwards
-                  0x001a58                  _Turn_right
-                  0x001a76                  _Turn_left
-                  0x001a94                  _Turn_180
-                  0x001ab2                  _Stop
-                  0x001ac0                  _TX_side
-                  0x001ade                  _TX_front
-                  0x001afc                  _TX_post
-                  0x001bda                  _ADCsetup
-                  0x001c62                  _pwmSetup
-                  0x001ca0                  _dutycycle
-                  0x001cb8                  _delay
-                  0x001ce4                  _buzz
-                  0x001cf2                  _QEIsetup
-                  0x001d26                  _timer1Setup
+                  0x001846                  _UART1Setup
+                  0x001890                  _UART2Setup
+                  0x0018d8                  _mySendString
+                  0x00190e                  _decode
+                  0x0019fe                  _gpIOSetup
+                  0x001a1a                  _Move_forwards
+                  0x001a28                  _Move_forwards_one_cell
+                  0x001a46                  _Move_backwards
+                  0x001a54                  _Turn_right
+                  0x001a72                  _Turn_left
+                  0x001a90                  _Turn_180
+                  0x001aae                  _Stop
+                  0x001abc                  _TX_side
+                  0x001ada                  _TX_front
+                  0x001af8                  _TX_post
+                  0x001bd6                  _ADCsetup
+                  0x001c5e                  _pwmSetup
+                  0x001c9c                  _dutycycle
+                  0x001cb4                  _delay
+                  0x001ce0                  _buzz
+                  0x001cee                  _QEIsetup
+                  0x001d22                  _timer1Setup
 
 External Symbols in Program Memory (by name):
 
-                  0x001bda                  _ADCsetup
-                  0x001a4a                  _Move_backwards
-                  0x001a1e                  _Move_forwards
-                  0x001a2c                  _Move_forwards_one_cell
-                  0x001cf2                  _QEIsetup
-                  0x001ab2                  _Stop
-                  0x001ade                  _TX_front
-                  0x001afc                  _TX_post
-                  0x001ac0                  _TX_side
-                  0x001a94                  _Turn_180
-                  0x001a76                  _Turn_left
-                  0x001a58                  _Turn_right
-                  0x00184a                  _UART1Setup
-                  0x001894                  _UART2Setup
+                  0x001bd6                  _ADCsetup
+                  0x001a46                  _Move_backwards
+                  0x001a1a                  _Move_forwards
+                  0x001a28                  _Move_forwards_one_cell
+                  0x001cee                  _QEIsetup
+                  0x001aae                  _Stop
+                  0x001ada                  _TX_front
+                  0x001af8                  _TX_post
+                  0x001abc                  _TX_side
+                  0x001a90                  _Turn_180
+                  0x001a72                  _Turn_left
+                  0x001a54                  _Turn_right
+                  0x001846                  _UART1Setup
+                  0x001890                  _UART2Setup
                   0x0002ae                  __ADCInterrupt
                   0x000308                  __DefaultInterrupt
                   0x000fd6                  __Dnorm
@@ -406,25 +406,25 @@ External Symbols in Program Memory (by name):
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
                   0x00071c                  __sprintf_fF
-                  0x001ce4                  _buzz
-                  0x001912                  _decode
-                  0x001cb8                  _delay
+                  0x001ce0                  _buzz
+                  0x00190e                  _decode
+                  0x001cb4                  _delay
                   0x000d9a                  _div
-                  0x001ca0                  _dutycycle
-                  0x001a02                  _gpIOSetup
+                  0x001c9c                  _dutycycle
+                  0x0019fe                  _gpIOSetup
                   0x0006e4                  _isspace
                   0x000db0                  _ldiv
                   0x0015f8                  _main
                   0x000dda                  _memchr
                   0x0004e2                  _memcpy
                   0x0004f0                  _memset
-                  0x0018dc                  _mySendString
-                  0x001c62                  _pwmSetup
+                  0x0018d8                  _mySendString
+                  0x001c5e                  _pwmSetup
                   0x0004fe                  _strcat
                   0x000dee                  _strchr
                   0x000512                  _strlen
                   0x00051e                  _strtol
-                  0x001d26                  _timer1Setup
+                  0x001d22                  _timer1Setup
                   0x0006f4                  _tolower
                   0x00070e                  sprintf_fF.XXeo:_prout
 
@@ -1754,40 +1754,40 @@ __c30_signature
  .const             0x95ea          0x8 build/default/production/Timer1Functions.o
  .const             0x95f2          0x6 build/default/production/ADCfunctions.o
 
-.text             0x0015f8        0x522
- .text            0x0015f8        0x252 build/default/production/main.o
+.text             0x0015f8        0x51e
+ .text            0x0015f8        0x24e build/default/production/main.o
                   0x0015f8                  _main
- .text            0x00184a        0x1b8 build/default/production/UARTfunctions.o
-                  0x00184a                  _UART1Setup
-                  0x001894                  _UART2Setup
-                  0x0018dc                  _mySendString
-                  0x001912                  _decode
- .text            0x001a02        0x118 build/default/production/gpIO.o
-                  0x001a02                  _gpIOSetup
-                  0x001a1e                  _Move_forwards
-                  0x001a2c                  _Move_forwards_one_cell
-                  0x001a4a                  _Move_backwards
-                  0x001a58                  _Turn_right
-                  0x001a76                  _Turn_left
-                  0x001a94                  _Turn_180
-                  0x001ab2                  _Stop
-                  0x001ac0                  _TX_side
-                  0x001ade                  _TX_front
-                  0x001afc                  _TX_post
+ .text            0x001846        0x1b8 build/default/production/UARTfunctions.o
+                  0x001846                  _UART1Setup
+                  0x001890                  _UART2Setup
+                  0x0018d8                  _mySendString
+                  0x00190e                  _decode
+ .text            0x0019fe        0x118 build/default/production/gpIO.o
+                  0x0019fe                  _gpIOSetup
+                  0x001a1a                  _Move_forwards
+                  0x001a28                  _Move_forwards_one_cell
+                  0x001a46                  _Move_backwards
+                  0x001a54                  _Turn_right
+                  0x001a72                  _Turn_left
+                  0x001a90                  _Turn_180
+                  0x001aae                  _Stop
+                  0x001abc                  _TX_side
+                  0x001ada                  _TX_front
+                  0x001af8                  _TX_post
 
-.dinit            0x001b1a         0xc0
- .dinit           0x001b1a         0xc0 data_init
+.dinit            0x001b16         0xc0
+ .dinit           0x001b16         0xc0 data_init
 
-.text             0x001bda        0x17c
- .text            0x001bda         0x88 build/default/production/ADCfunctions.o
-                  0x001bda                  _ADCsetup
- .text            0x001c62         0x56 build/default/production/PWMfunctions.o
-                  0x001c62                  _pwmSetup
-                  0x001ca0                  _dutycycle
- .text            0x001cb8         0x3a build/default/production/miscFunctions.o
-                  0x001cb8                  _delay
-                  0x001ce4                  _buzz
- .text            0x001cf2         0x34 build/default/production/QEIfunctions.o
-                  0x001cf2                  _QEIsetup
- .text            0x001d26         0x30 build/default/production/Timer1Functions.o
-                  0x001d26                  _timer1Setup
+.text             0x001bd6        0x17c
+ .text            0x001bd6         0x88 build/default/production/ADCfunctions.o
+                  0x001bd6                  _ADCsetup
+ .text            0x001c5e         0x56 build/default/production/PWMfunctions.o
+                  0x001c5e                  _pwmSetup
+                  0x001c9c                  _dutycycle
+ .text            0x001cb4         0x3a build/default/production/miscFunctions.o
+                  0x001cb4                  _delay
+                  0x001ce0                  _buzz
+ .text            0x001cee         0x34 build/default/production/QEIfunctions.o
+                  0x001cee                  _QEIsetup
+ .text            0x001d22         0x30 build/default/production/Timer1Functions.o
+                  0x001d22                  _timer1Setup
