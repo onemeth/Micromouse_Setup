@@ -186,11 +186,10 @@ void decode(char str){
  ********************************************************/
 void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
     IFS0bits.U1RXIF = 0;        // Clear the UART Receive Interrupt Flag
-//    char str;                   // Declare character 
-//    
-//    while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
-//        str = U2RXREG;          // Read one char at a time from the U2 RX register  
-//    decode(str);                // Call function to decode char
+    char str;                   // Declare character 
+    while(U1STAbits.URXDA)      // Data arrival - while there is data to receive
+        str = U1RXREG;          // Read one char at a time from the U1 RX register 
+    U2TXREG = str;
 }
 
 /********************************************************
