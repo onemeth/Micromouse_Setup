@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/QEIfunctions.c</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/Timer1Functions.c</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/QEIfunctions.h</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/gpIO.h</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/main.c</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/gpIO.c</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/UARTfunctions.c</file>
-            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/ADCfunctions.c</file>
-        </group>
         <group name="LAB2">
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/QEIfunctions.h</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/QEIfunctions.c</file>
@@ -22,5 +12,6 @@
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/UARTfunctions.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/ADCfunctions.c</file>
         </group>
+        <group/>
     </open-files>
 </project-private>
