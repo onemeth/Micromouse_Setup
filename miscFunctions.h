@@ -21,8 +21,7 @@
 
 /***** PROTOTYPES *****/
 void buzz(void);
-
-void delay(void);
+void delay(int);
 
 /***** END GUARD *****/
 #endif	

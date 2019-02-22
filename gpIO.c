@@ -44,5 +44,81 @@ void gpIOSetup(void) {
     TRISDbits.TRISD0    = 1;    // Button input
     TRISBbits.TRISB4    = 1;    // Encoder 1 A input
     TRISBbits.TRISB5    = 1;    // Encoder 1 B input
-    
+   
+}
+
+void Move_forwards(void){
+    MTR_LF = 1;
+    MTR_LB = 0;
+    MTR_RF = 1;
+    MTR_RB = 0;
+}
+
+void Move_forwards_one_cell(void){
+    POSCNT = 32767;
+while((32767-2847) < POSCNT){ 
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 1;
+        MTR_RB = 0; 
+    }
+    Stop(); 
+}
+
+void Move_backwards(void){
+    MTR_LF = 0;
+    MTR_LB = 1;
+    MTR_RF = 0;
+    MTR_RB = 1;   
+}
+
+void Turn_right(void){
+    POSCNT = 0x7fff;
+while((32767-662) < POSCNT){ //820
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 0;
+        MTR_RB = 1; 
+    }
+    Stop();  
+}
+
+void Turn_left(void){
+    POSCNT = 0x7fff;
+
+    while((32767+662) > POSCNT){
+        MTR_LF = 0;
+        MTR_LB = 1;
+        MTR_RF = 1;
+        MTR_RB = 0; 
+    }
+    Stop(); 
+}
+
+void Turn_180(void){
+    POSCNT = 0x7fff;
+while((32767-1719) < POSCNT){
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 0;
+        MTR_RB = 1; 
+    }
+    Stop();     
+}
+
+void Stop(void){
+    MTR_LF = 0;
+    MTR_LB = 0;
+    MTR_RF = 0;
+    MTR_RB = 0;
+}
+
+void TX_side(int state){
+   TX_S = state;
+}
+void TX_front(int state){
+   TX_F = state;
+}
+void TX_post(int state){
+   TX_P = state;  
 }

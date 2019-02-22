@@ -21,6 +21,9 @@
 #include"UARTfunctions.h"
 #include<stdio.h>
 
+/***** EXT VARS    *****/
+float position;
+
 /***** FUNCTIONS *****/
 void timer1Setup(void){
     T1CONbits.TON   = 0;        // switches the timer off during setup (good practice)
@@ -55,21 +58,29 @@ void timer1Setup(void){
 void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){    
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
     ADCON1bits.ASAM = 1;                    // start ADC sampling
-    static int count = 0;
+    int rollover_counter;
     float vel, angVel;
-    static int POSsample = 0;
+    static int POSsample = 0; 
     
-    vel = (POSCNT - POSsample)*0.1;
-    POSsample = POSCNT;    
+    position = POSCNT + (rollover_counter*65536);
+    vel = (POSCNT - POSsample)*0.1;   
     angVel = vel*(((2*3.14)/16)/(33*4));
     
-    if(count==10){
-    char send_String[] = "Velocity: ";
+    
+    if(2814 == position){
     char result[100];
-    sprintf(result, "%f", vel);
-    strcat(send_String, result);
-    mySendString(send_String);
+    sprintf(result, "180mm \n");
+    mySendString(result);
+    }
+    
+    
+    /*
+    if(count==10){
+    char result[100];
+    sprintf(result, "Velocity: %f ", vel);
+    mySendString(result);
     count = 0;
     }
     count++;
-}                                           // End ISR
+     */ 
+}

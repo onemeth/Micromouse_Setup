@@ -17,6 +17,7 @@
 #include"gpIO.h"
 #include<string.h>                  // For using strlen
 #include"PWMfunctions.h"
+#include"QEIfunctions.h"
 #include<stdlib.h>                  // For using strtol and memset
 
 #define lenstr 100                  // Define string length
@@ -140,7 +141,7 @@ void decode(char str){
         if((count == 0) || (flag == 1))             // Exclude anything other than 0 - 100 and <>
             mySendString(error);                    // Send error
         else if (count > 0){                        // Start converting chars to decimal
-        decimal = strtol(array, NULL, 10);          // Convert string to int using stdlib func      
+        decimal = strtol(array, NULL, 10);          // Convert string to int using stdlib func     
             if((decimal < 0) || (decimal > 100))    // If decimals are out of range
             mySendString(error);                    // Send error
             else{                                   // Else if decimals are in range
@@ -148,6 +149,7 @@ void decode(char str){
             strcat(ok, array);                      // Join two strings for printing
             mySendString(ok);                       // Send OK
             }
+         
         }
         memset(array, 0, lenstr);                   // Completely clear string
         start = 0;                                  // Reset start
