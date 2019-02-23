@@ -56,7 +56,7 @@ void Move_forwards(void){
 
 void Move_forwards_one_cell(void){
     POSCNT = 32767;
-while((32767-2847) < POSCNT){ 
+while((32767-2847) < POSCNT){ //This value needs to be tested
         MTR_LF = 1;
         MTR_LB = 0;
         MTR_RF = 1;
