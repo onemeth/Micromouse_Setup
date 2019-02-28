@@ -65,6 +65,17 @@ while((32767-2847) < POSCNT){
     Stop(); 
 }
 
+void Move_forwards_half_cell(void){
+    POSCNT = 32767;
+while((32767-1422) < POSCNT){ 
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 1;
+        MTR_RB = 0; 
+    }
+    Stop(); 
+}
+
 void Move_backwards(void){
     MTR_LF = 0;
     MTR_LB = 1;
@@ -121,4 +132,47 @@ void TX_front(int state){
 }
 void TX_post(int state){
    TX_P = state;  
+}
+
+
+/******************************************
+* PID velocity controller function
+* ===================
+* Returns a floating point valued drive
+* Expects to receive a floating point argument as the desired velocity
+******************************************/
+float PID_controller ( float desired_velocity )
+{
+int actual_velocity=0; // Measured velocity ( note: this is signed int )
+float Proportional_Component; // }
+float Derivative_Component; // } Separate components of controller
+float Integral_Component; // }
+float drive ; // Output of the controller
+float error; // Difference between desired and actual velocities
+static float error_1 = 0; // Previous difference between desired and actual velocities
+static float integrator_sum = 0; // Sum of all differences between desired and actual velocities
+float error_deriv; // change in difference between desired and actual velocities
+float Kp, Ki, Kd; // PID Gains
+// Set gains (THESE MUST BE TUNED!)
+Kp = 20.0; // Proportional gain
+Ki = 1.0; // Integral gain is value time 100, i.e. Ki=100
+Kd = 20.0; // Derivative gain is value divide by 100, i.e. Kd=.2
+// Calculate difference between desired and actual velocities, i.e., calculate ERROR
+actual_velocity = getEncoderVelocity(); // from next weeks lecture
+error = desired_velocity - (float)actual_velocity; // cast an int to a float
+// Calculate Proportional component
+Proportional_Component = error * Kp;
+// Calculate Integral component
+if(integrator_sum > 32000)
+integrator_sum = 32000; // To prevent integral overflow
+if(integrator_sum < -32000)
+integrator_sum = -32000; // To prevent integral underflow
+integrator_sum = integrator_sum + error; // update the integral sum with current error
+Integral_Component = integrator_sum * Ki;
+// Calculate Derivative component
+error_deriv = error - error_1; // current error ? previous error
+Derivative_Component = error_deriv * Kd;
+error_1 = error; // update previous error for next control iteration
+drive = Proportional_Component + Integral_Component + Derivative_Component ; // sum the components
+return drive; // return drive from function
 }

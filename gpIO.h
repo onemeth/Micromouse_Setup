@@ -45,6 +45,7 @@ void gpIOSetup(void);
 
 void Move_forwards(void);
 void Move_forwards_one_cell(void);
+void Move_forwards_half_cell(void);
 void Move_backwards(void);
 void Turn_right(void);
 void Turn_left(void);
@@ -54,6 +55,8 @@ void Stop(void);
 void TX_side(int);
 void TX_front(int);
 void TX_post(int);
+
+float PID_controller (float);
 
 /***** END GUARD *****/
 #endif	

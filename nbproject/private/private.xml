@@ -15,9 +15,12 @@
         <group name="LAB2">
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/QEIfunctions.h</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/QEIfunctions.c</file>
+            <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/miscFunctions.h</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/gpIO.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/Timer1Functions.c</file>
+            <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/PWMfunctions.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/gpIO.h</file>
+            <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/miscFunctions.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/main.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/UARTfunctions.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/ADCfunctions.c</file>
