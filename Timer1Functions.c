@@ -58,21 +58,28 @@ void timer1Setup(void){
 void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){    
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
     ADCON1bits.ASAM = 1;                    // start ADC sampling
-    int rollover_counter;
-    float vel, angVel;
-    static int POSsample = 0; 
-    
-    position = POSCNT + (rollover_counter*65536);
-    vel = (POSCNT - POSsample)*0.1;   
-    angVel = vel*(((2*3.14)/16)/(33*4));
-    
-    
-    if(2814 == position){
-    char result[100];
-    sprintf(result, "180mm \n");
-    mySendString(result);
-    }
-    
+//    extern int rollover_counter;
+//    float vel, angVel;
+//    static int POSsample = 0; 
+//    
+////    position = POSCNT + (rollover_counter*65536);
+////    vel = (POSCNT - POSsample)*0.1;   
+////    angVel = vel*(((2*3.14)/16)/(33*4));
+////    
+////    
+////    if(2814 == position){
+////    char result[100];
+////    sprintf(result, "180mm \n");
+////    mySendString(result);
+////    }
+//    
+//    
+//    if(2814 == position){
+//    char result[100];
+//    sprintf(result, "180mm \n");
+//    mySendString(result);
+//    }
+//    
     
     /*
     if(count==10){

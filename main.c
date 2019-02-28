@@ -120,10 +120,3 @@ int main(void){
     return 0;                          // We should never really return
 }                                      // End function
 }
-
-
-SensorsSwitch(int state){
-    TX_S = state;
-    TX_F = state;
-    TX_P = state;       
-}
