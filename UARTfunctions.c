@@ -22,6 +22,10 @@
 
 #define lenstr 100                  // Define string length
 
+
+/***** EXT VARS    *****/
+static int POSCNT2;
+
 /***** FUNCTIONS *****/
 /********************************************************
  * Description                                          
@@ -132,25 +136,10 @@ void decode(char str){
     static int count = 0;                 
     static int start = 0;
     static int flag = 0;
-    static char array[lenstr];
-    static int decimal = 0;
-    char error[] = " ERROR!"; 
-    char ok[7] = " OK: ";  
+    static char array[lenstr]; 
 
     if((str == '>') && (start == 1)){               // Stop bit detection
-        if((count == 0) || (flag == 1))             // Exclude anything other than 0 - 100 and <>
-            mySendString(error);                    // Send error
-        else if (count > 0){                        // Start converting chars to decimal
-        decimal = strtol(array, NULL, 10);          // Convert string to int using stdlib func     
-            if((decimal < 0) || (decimal > 100))    // If decimals are out of range
-            mySendString(error);                    // Send error
-            else{                                   // Else if decimals are in range
-            dutycycle(decimal);                     // Send decimal to PWM
-            strcat(ok, array);                      // Join two strings for printing
-            mySendString(ok);                       // Send OK
-            }
-         
-        }
+        POSCNT2 = strtol(array, NULL, 10);          // Convert string to int using stdlib func     
         memset(array, 0, lenstr);                   // Completely clear string
         start = 0;                                  // Reset start
         count = 0;                                  // Reset count
@@ -186,11 +175,11 @@ void decode(char str){
  ********************************************************/
 void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
     IFS0bits.U1RXIF = 0;        // Clear the UART Receive Interrupt Flag
-//    char str;                   // Declare character 
-//    
-//    while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
-//        str = U2RXREG;          // Read one char at a time from the U2 RX register  
-//    decode(str);                // Call function to decode char
+    char str;                   // Declare character 
+    
+    while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
+        str = U2RXREG;          // Read one char at a time from the U2 RX register  
+    decode(str);                // Call function to decode char
 }
 
 /********************************************************

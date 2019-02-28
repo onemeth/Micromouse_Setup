@@ -96,8 +96,9 @@ while((32767-662) < POSCNT){ //820
 
 void Turn_left(void){
     POSCNT = 0x7fff;
+    long int ans = 32767+662;
 
-    while((32767+662) > POSCNT){
+    while((ans) > POSCNT){
         MTR_LF = 0;
         MTR_LB = 1;
         MTR_RF = 1;
@@ -153,22 +154,29 @@ static float error_1 = 0; // Previous difference between desired and actual velo
 static float integrator_sum = 0; // Sum of all differences between desired and actual velocities
 float error_deriv; // change in difference between desired and actual velocities
 float Kp, Ki, Kd; // PID Gains
+extern float vel;
+
 // Set gains (THESE MUST BE TUNED!)
 Kp = 20.0; // Proportional gain
 Ki = 1.0; // Integral gain is value time 100, i.e. Ki=100
 Kd = 20.0; // Derivative gain is value divide by 100, i.e. Kd=.2
+
 // Calculate difference between desired and actual velocities, i.e., calculate ERROR
-actual_velocity = getEncoderVelocity(); // from next weeks lecture
+actual_velocity = vel; //getEncoderVelocity(); // from next weeks lecture
 error = desired_velocity - (float)actual_velocity; // cast an int to a float
+
 // Calculate Proportional component
 Proportional_Component = error * Kp;
+
 // Calculate Integral component
-if(integrator_sum > 32000)
-integrator_sum = 32000; // To prevent integral overflow
-if(integrator_sum < -32000)
-integrator_sum = -32000; // To prevent integral underflow
+if(integrator_sum > 2000) //32000
+integrator_sum = 2000; // To prevent integral overflow
+if(integrator_sum < -2000)
+integrator_sum = -2000; // To prevent integral underflow
+
 integrator_sum = integrator_sum + error; // update the integral sum with current error
 Integral_Component = integrator_sum * Ki;
+
 // Calculate Derivative component
 error_deriv = error - error_1; // current error ? previous error
 Derivative_Component = error_deriv * Kd;

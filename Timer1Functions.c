@@ -22,7 +22,7 @@
 #include<stdio.h>
 
 /***** EXT VARS    *****/
-float position;
+float position, vel, vel2;
 
 /***** FUNCTIONS *****/
 void timer1Setup(void){
@@ -58,12 +58,16 @@ void timer1Setup(void){
 void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){    
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
     ADCON1bits.ASAM = 1;                    // start ADC sampling
-    int rollover_counter;
-    float vel, angVel;
+    extern int rollover_counter, POSCNT2;
+    float angVel;
     static int POSsample = 0; 
+    int count = 0;
     
     position = POSCNT + (rollover_counter*65536);
-    vel = (POSCNT - POSsample)*0.1;   
+    
+    vel = (POSCNT - POSsample)*0.1; 
+    vel2 = (POSCNT2 - POSsample)*0.1; 
+    
     angVel = vel*(((2*3.14)/16)/(33*4));
     
     
@@ -74,13 +78,13 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     }
     
     
-    /*
-    if(count==10){
+    
+    if(count==100){
     char result[100];
     sprintf(result, "Velocity: %f ", vel);
     mySendString(result);
     count = 0;
     }
     count++;
-     */ 
+    
 }
