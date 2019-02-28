@@ -121,4 +121,9 @@ int main(void){
 }                                      // End function
 }
 
-// YOOOOOO
+
+SensorsSwitch(int state){
+    TX_S = state;
+    TX_F = state;
+    TX_P = state;       
+}

@@ -717,16 +717,16 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x4722
+.debug_info       0x000000       0x471a
  *(.debug_info)
  .debug_info      0x000000        0x72a build/default/production/gpIO.o
- .debug_info      0x00072a        0x2bd build/default/production/main.o
- .debug_info      0x0009e7        0x538 build/default/production/PWMfunctions.o
- .debug_info      0x000f1f        0xa1f build/default/production/Timer1Functions.o
- .debug_info      0x00193e       0x1205 build/default/production/UARTfunctions.o
- .debug_info      0x002b43        0x212 build/default/production/miscFunctions.o
- .debug_info      0x002d55        0x8b4 build/default/production/QEIfunctions.o
- .debug_info      0x003609       0x1119 build/default/production/ADCfunctions.o
+ .debug_info      0x00072a        0x2b5 build/default/production/main.o
+ .debug_info      0x0009df        0x538 build/default/production/PWMfunctions.o
+ .debug_info      0x000f17        0xa1f build/default/production/Timer1Functions.o
+ .debug_info      0x001936       0x1205 build/default/production/UARTfunctions.o
+ .debug_info      0x002b3b        0x212 build/default/production/miscFunctions.o
+ .debug_info      0x002d4d        0x8b4 build/default/production/QEIfunctions.o
+ .debug_info      0x003601       0x1119 build/default/production/ADCfunctions.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x75e
