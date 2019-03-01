@@ -16,6 +16,7 @@
 #include"gpIO.h"
 #include"UARTfunctions.h"
 #include<stdio.h>
+#include"PWMfunctions.h"
 /***** FUNCTIONS *****/
 
 /********************************************************
@@ -179,10 +180,10 @@ error = desired_velocity - (float)actual_velocity; // cast an int to a float
 Proportional_Component = error * Kp;
 
 // Calculate Integral component
-if(integrator_sum > 2000) //32000
-integrator_sum = 2000; // To prevent integral overflow
-if(integrator_sum < -2000)
-integrator_sum = -2000; // To prevent integral underflow
+if(integrator_sum > 32000) //32000
+integrator_sum = 32000; // To prevent integral overflow
+if(integrator_sum < -32000)
+integrator_sum = -32000; // To prevent integral underflow
 
 integrator_sum = integrator_sum + error; // update the integral sum with current error
 Integral_Component = integrator_sum * Ki;
@@ -193,7 +194,6 @@ Derivative_Component = error_deriv * Kd;
 error_1 = error; // update previous error for next control iteration
 drive = Proportional_Component + Integral_Component + Derivative_Component ; // sum the components
 
-    
 
     static int countP = 0;
     if(countP==10){
@@ -203,7 +203,19 @@ drive = Proportional_Component + Integral_Component + Derivative_Component ; // 
     countP = 0;
     }
     countP++;  
+ 
+    //Use drive to modify PWM1
     
+    if (drive > 0) {//dc left motor slower 
+        dutycycleL(50 - (int)drive); 
+    }
+    else if(drive < 0){ //dc left motor faster
+        dutycycleL(50 + (int)drive); 
+    }
+    
+    
+    
+    /*
     if (drive > 0) {
         MTR_LF = 0;
         MTR_LB = 0;
@@ -222,5 +234,5 @@ drive = Proportional_Component + Integral_Component + Derivative_Component ; // 
         MTR_RF = 1;
         MTR_RB = 0; 
 }
-
+*/
 }

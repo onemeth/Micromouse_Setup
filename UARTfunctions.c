@@ -24,7 +24,6 @@
 
 
 /***** EXT VARS    *****/
-int POSCNT2;
 float vel2;
 
 /***** FUNCTIONS *****/
@@ -142,7 +141,7 @@ void decode(char str){
     
     if((str == '>') && (start == 1)){               // Stop bit detection
         vel2 = atof(array);
-        PID_controller(vel2);  //Dont PID here! do it in timer 1
+      //  PID_controller(vel2);  //Dont PID here! do it in timer 1
         memset(array, 0, lenstr);                   // Completely clear string
         start = 0;                                  // Reset start
         count = 0;                                  // Reset count

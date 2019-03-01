@@ -58,16 +58,19 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
     ADCON1bits.ASAM = 1;                    // start ADC sampling
     extern int rollover_counter;
-    static int POSsample = 0; 
-    static double position;
+    extern float vel2;
+    static int POSsample = 0, position; 
 
     position = (POSCNT) + (rollover_counter*32768);
     vel = (position - POSsample)*0.1; 
     POSsample = position;
 
- //PID should be called here!
-  
-
+    static int countP = 0;
+    if(countP == 1){
+        PID_controller(vel2);
+    }
+    countP++;
+    
     /*
     static int count = 0;
     if(count==100){
