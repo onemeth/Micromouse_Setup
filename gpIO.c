@@ -97,7 +97,7 @@ while((32767-662) < POSCNT){ //820
 
 void Turn_left(void){
     POSCNT = 0x7fff;
-    long int ans = 32767+662;
+    unsigned long ans = (long int)32767+ (long int)662;
 
     while((ans) > POSCNT){
         MTR_LF = 0;
@@ -198,7 +198,7 @@ drive = Proportional_Component + Integral_Component + Derivative_Component ; // 
     static int countP = 0;
     if(countP==10){
     char result[100];
-    sprintf(result,"\n drive = %.1f \n", drive);
+    sprintf(result,"\n drive = %.1e \n", (double)drive);
     mySendString(result);
     countP = 0;
     }
