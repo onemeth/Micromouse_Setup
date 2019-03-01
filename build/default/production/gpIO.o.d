@@ -1,3 +1,4 @@
 build/default/production/gpIO.o:  \
 gpIO.c  \
-gpIO.h 
+gpIO.h  \
+UARTfunctions.h 

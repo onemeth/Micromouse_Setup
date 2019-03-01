@@ -80,11 +80,5 @@ void __attribute__((interrupt, no_auto_psv)) _QEIInterrupt(void){
         rollover_counter--;
     
     POSCNT = 0x7fff;
-    
-    /*
-    char result[100];
-    sprintf(result, "POSITION %d \n", rollover_counter);
-    mySendString(result);
-     */
 }
 

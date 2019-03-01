@@ -14,7 +14,8 @@
 
 /***** HEADER FILES *****/
 #include"gpIO.h"
-
+#include"UARTfunctions.h"
+#include<stdio.h>
 /***** FUNCTIONS *****/
 
 /********************************************************
@@ -142,7 +143,7 @@ void TX_post(int state){
 * Returns a floating point valued drive
 * Expects to receive a floating point argument as the desired velocity
 ******************************************/
-float PID_controller ( float desired_velocity )
+void PID_controller ( float desired_velocity )
 {
 int actual_velocity=0; // Measured velocity ( note: this is signed int )
 float Proportional_Component; // }
@@ -182,5 +183,35 @@ error_deriv = error - error_1; // current error ? previous error
 Derivative_Component = error_deriv * Kd;
 error_1 = error; // update previous error for next control iteration
 drive = Proportional_Component + Integral_Component + Derivative_Component ; // sum the components
-return drive; // return drive from function
+
+    
+
+    static int countP = 0;
+    if(countP==10){
+    char result[100];
+    sprintf(result,"\n drive = %.1f \n", drive);
+    mySendString(result);
+    countP = 0;
+    }
+    countP++;  
+    
+    if (drive > 0) {
+        MTR_LF = 0;
+        MTR_LB = 0;
+        MTR_RF = 1;
+        MTR_RB = 0; 
+}
+    else if(drive < 0){
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 0;
+        MTR_RB = 0; 
+}
+    else if(drive == 0){
+        MTR_LF = 1;
+        MTR_LB = 0;
+        MTR_RF = 1;
+        MTR_RB = 0; 
+}
+
 }

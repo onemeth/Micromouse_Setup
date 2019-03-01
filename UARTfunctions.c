@@ -24,7 +24,8 @@
 
 
 /***** EXT VARS    *****/
-static int POSCNT2;
+int POSCNT2;
+float vel2;
 
 /***** FUNCTIONS *****/
 /********************************************************
@@ -138,8 +139,10 @@ void decode(char str){
     static int flag = 0;
     static char array[lenstr]; 
 
+    
     if((str == '>') && (start == 1)){               // Stop bit detection
-        POSCNT2 = strtol(array, NULL, 10);          // Convert string to int using stdlib func     
+        vel2 = atof(array);
+        PID_controller(vel2);  
         memset(array, 0, lenstr);                   // Completely clear string
         start = 0;                                  // Reset start
         count = 0;                                  // Reset count
@@ -177,9 +180,11 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
     IFS0bits.U1RXIF = 0;        // Clear the UART Receive Interrupt Flag
     char str;                   // Declare character 
     
-    while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
-        str = U2RXREG;          // Read one char at a time from the U2 RX register  
+    while(U1STAbits.URXDA)      // Data arrival - while there is data to receive
+        str = U1RXREG;          // Read one char at a time from the U1 RX register  
+    
     decode(str);                // Call function to decode char
+   // U2TXREG = str;
 }
 
 /********************************************************
@@ -216,6 +221,7 @@ void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     while(U2STAbits.URXDA)      // Data arrival - while there is data to receive
         str = U2RXREG;          // Read one char at a time from the U2 RX register  
     decode(str);                // Call function to decode char
+    
 }
 
 /********************************************************
