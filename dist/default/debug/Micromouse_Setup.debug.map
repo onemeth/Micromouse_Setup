@@ -4,10 +4,10 @@ Tool Name:
   /Applications/microchip/xc16/v1.35/bin/bin/../bin/elf-ld
 
 Command:
-  -T/tmp/tmp00004c3b.00 \
-  -T/tmp/tmp00004c3b.01 \
-  -T/tmp/tmp00004c3b.02 \
-  -T/tmp/tmp00004c3b.03 \
+  -T/tmp/tmp00005033.00 \
+  -T/tmp/tmp00005033.01 \
+  -T/tmp/tmp00005033.02 \
+  -T/tmp/tmp00005033.03 \
   -p30F4011 \
   -o \
   dist/default/debug/Micromouse_Setup.debug.elf \
@@ -178,11 +178,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100              0x1476          0x1eb1  (7857)
 .const                      0x1576                 0x6             0x9  (9)
-.text                       0x157c               0x51e           0x7ad  (1965)
-.dinit                      0x1a9a                0xc0           0x120  (288)
-.text                       0x1b5a               0x17c           0x23a  (570)
+.text                       0x157c               0x51c           0x7aa  (1962)
+.dinit                      0x1a98                0xc0           0x120  (288)
+.text                       0x1b58               0x17c           0x23a  (570)
 
-                 Total "program" memory used (bytes):         0x29c1  (10689) 21%
+                 Total "program" memory used (bytes):         0x29be  (10686) 21%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -305,45 +305,45 @@ External Symbols in Program Memory (by address):
                   0x001500                  ___floatdidf
                   0x001520                  ___floatundidf
                   0x00157c                  _main
-                  0x0017ca                  _UART1Setup
-                  0x001814                  _UART2Setup
-                  0x00185c                  _mySendString
-                  0x001892                  _decode
-                  0x001982                  _gpIOSetup
-                  0x00199e                  _Move_forwards
-                  0x0019ac                  _Move_forwards_one_cell
-                  0x0019ca                  _Move_backwards
-                  0x0019d8                  _Turn_right
-                  0x0019f6                  _Turn_left
-                  0x001a14                  _Turn_180
-                  0x001a32                  _Stop
-                  0x001a40                  _TX_side
-                  0x001a5e                  _TX_front
-                  0x001a7c                  _TX_post
-                  0x001b5a                  _ADCsetup
-                  0x001be2                  _pwmSetup
-                  0x001c20                  _dutycycle
-                  0x001c38                  _delay
-                  0x001c64                  _buzz
-                  0x001c72                  _QEIsetup
-                  0x001ca6                  _timer1Setup
+                  0x0017c8                  _UART1Setup
+                  0x001812                  _UART2Setup
+                  0x00185a                  _mySendString
+                  0x001890                  _decode
+                  0x001980                  _gpIOSetup
+                  0x00199c                  _Move_forwards
+                  0x0019aa                  _Move_forwards_one_cell
+                  0x0019c8                  _Move_backwards
+                  0x0019d6                  _Turn_right
+                  0x0019f4                  _Turn_left
+                  0x001a12                  _Turn_180
+                  0x001a30                  _Stop
+                  0x001a3e                  _TX_side
+                  0x001a5c                  _TX_front
+                  0x001a7a                  _TX_post
+                  0x001b58                  _ADCsetup
+                  0x001be0                  _pwmSetup
+                  0x001c1e                  _dutycycle
+                  0x001c36                  _delay
+                  0x001c62                  _buzz
+                  0x001c70                  _QEIsetup
+                  0x001ca4                  _timer1Setup
 
 External Symbols in Program Memory (by name):
 
-                  0x001b5a                  _ADCsetup
-                  0x0019ca                  _Move_backwards
-                  0x00199e                  _Move_forwards
-                  0x0019ac                  _Move_forwards_one_cell
-                  0x001c72                  _QEIsetup
-                  0x001a32                  _Stop
-                  0x001a5e                  _TX_front
-                  0x001a7c                  _TX_post
-                  0x001a40                  _TX_side
-                  0x001a14                  _Turn_180
-                  0x0019f6                  _Turn_left
-                  0x0019d8                  _Turn_right
-                  0x0017ca                  _UART1Setup
-                  0x001814                  _UART2Setup
+                  0x001b58                  _ADCsetup
+                  0x0019c8                  _Move_backwards
+                  0x00199c                  _Move_forwards
+                  0x0019aa                  _Move_forwards_one_cell
+                  0x001c70                  _QEIsetup
+                  0x001a30                  _Stop
+                  0x001a5c                  _TX_front
+                  0x001a7a                  _TX_post
+                  0x001a3e                  _TX_side
+                  0x001a12                  _Turn_180
+                  0x0019f4                  _Turn_left
+                  0x0019d6                  _Turn_right
+                  0x0017c8                  _UART1Setup
+                  0x001812                  _UART2Setup
                   0x000262                  __ADCInterrupt
                   0x0002bc                  __DefaultInterrupt
                   0x000f64                  __Dnorm
@@ -409,25 +409,25 @@ External Symbols in Program Memory (by name):
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
                   0x00069c                  __sprintf_fF
-                  0x001c64                  _buzz
-                  0x001892                  _decode
-                  0x001c38                  _delay
+                  0x001c62                  _buzz
+                  0x001890                  _decode
+                  0x001c36                  _delay
                   0x000d1a                  _div
-                  0x001c20                  _dutycycle
-                  0x001982                  _gpIOSetup
+                  0x001c1e                  _dutycycle
+                  0x001980                  _gpIOSetup
                   0x000664                  _isspace
                   0x000d30                  _ldiv
                   0x00157c                  _main
                   0x000d5a                  _memchr
                   0x000d6e                  _memcpy
                   0x000470                  _memset
-                  0x00185c                  _mySendString
-                  0x001be2                  _pwmSetup
+                  0x00185a                  _mySendString
+                  0x001be0                  _pwmSetup
                   0x00047e                  _strcat
                   0x000d7c                  _strchr
                   0x000492                  _strlen
                   0x00049e                  _strtol
-                  0x001ca6                  _timer1Setup
+                  0x001ca4                  _timer1Setup
                   0x000674                  _tolower
                   0x00068e                  sprintf_fF.XXeo:_prout
 
@@ -736,16 +736,16 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x466e
+.debug_info       0x000000       0x4650
  *(.debug_info)
  .debug_info      0x000000        0x722 build/default/debug/gpIO.o
- .debug_info      0x000722        0x2b5 build/default/debug/main.o
- .debug_info      0x0009d7        0x530 build/default/debug/PWMfunctions.o
- .debug_info      0x000f07        0x96c build/default/debug/Timer1Functions.o
- .debug_info      0x001873       0x1234 build/default/debug/UARTfunctions.o
- .debug_info      0x002aa7        0x20a build/default/debug/miscFunctions.o
- .debug_info      0x002cb1        0x8ac build/default/debug/QEIfunctions.o
- .debug_info      0x00355d       0x1111 build/default/debug/ADCfunctions.o
+ .debug_info      0x000722        0x297 build/default/debug/main.o
+ .debug_info      0x0009b9        0x530 build/default/debug/PWMfunctions.o
+ .debug_info      0x000ee9        0x96c build/default/debug/Timer1Functions.o
+ .debug_info      0x001855       0x1234 build/default/debug/UARTfunctions.o
+ .debug_info      0x002a89        0x20a build/default/debug/miscFunctions.o
+ .debug_info      0x002c93        0x8ac build/default/debug/QEIfunctions.o
+ .debug_info      0x00353f       0x1111 build/default/debug/ADCfunctions.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x70c
@@ -759,16 +759,16 @@ userdata
  .debug_abbrev    0x000528         0xe7 build/default/debug/QEIfunctions.o
  .debug_abbrev    0x00060f         0xfd build/default/debug/ADCfunctions.o
 
-.debug_line       0x000000        0x863
+.debug_line       0x000000        0x867
  *(.debug_line)
  .debug_line      0x000000        0x124 build/default/debug/gpIO.o
- .debug_line      0x000124        0x107 build/default/debug/main.o
- .debug_line      0x00022b         0xef build/default/debug/PWMfunctions.o
- .debug_line      0x00031a         0xfd build/default/debug/Timer1Functions.o
- .debug_line      0x000417        0x155 build/default/debug/UARTfunctions.o
- .debug_line      0x00056c         0xe2 build/default/debug/miscFunctions.o
- .debug_line      0x00064e         0xfe build/default/debug/QEIfunctions.o
- .debug_line      0x00074c        0x117 build/default/debug/ADCfunctions.o
+ .debug_line      0x000124        0x10b build/default/debug/main.o
+ .debug_line      0x00022f         0xef build/default/debug/PWMfunctions.o
+ .debug_line      0x00031e         0xfd build/default/debug/Timer1Functions.o
+ .debug_line      0x00041b        0x155 build/default/debug/UARTfunctions.o
+ .debug_line      0x000570         0xe2 build/default/debug/miscFunctions.o
+ .debug_line      0x000652         0xfe build/default/debug/QEIfunctions.o
+ .debug_line      0x000750        0x117 build/default/debug/ADCfunctions.o
 
 .debug_frame      0x000000        0x454
  *(.debug_frame)
@@ -1768,40 +1768,40 @@ __c30_signature
 .const              0x9576          0x6 load address 0x001576  
  .const             0x9576          0x6 build/default/debug/ADCfunctions.o
 
-.text             0x00157c        0x51e
- .text            0x00157c        0x24e build/default/debug/main.o
+.text             0x00157c        0x51c
+ .text            0x00157c        0x24c build/default/debug/main.o
                   0x00157c                  _main
- .text            0x0017ca        0x1b8 build/default/debug/UARTfunctions.o
-                  0x0017ca                  _UART1Setup
-                  0x001814                  _UART2Setup
-                  0x00185c                  _mySendString
-                  0x001892                  _decode
- .text            0x001982        0x118 build/default/debug/gpIO.o
-                  0x001982                  _gpIOSetup
-                  0x00199e                  _Move_forwards
-                  0x0019ac                  _Move_forwards_one_cell
-                  0x0019ca                  _Move_backwards
-                  0x0019d8                  _Turn_right
-                  0x0019f6                  _Turn_left
-                  0x001a14                  _Turn_180
-                  0x001a32                  _Stop
-                  0x001a40                  _TX_side
-                  0x001a5e                  _TX_front
-                  0x001a7c                  _TX_post
+ .text            0x0017c8        0x1b8 build/default/debug/UARTfunctions.o
+                  0x0017c8                  _UART1Setup
+                  0x001812                  _UART2Setup
+                  0x00185a                  _mySendString
+                  0x001890                  _decode
+ .text            0x001980        0x118 build/default/debug/gpIO.o
+                  0x001980                  _gpIOSetup
+                  0x00199c                  _Move_forwards
+                  0x0019aa                  _Move_forwards_one_cell
+                  0x0019c8                  _Move_backwards
+                  0x0019d6                  _Turn_right
+                  0x0019f4                  _Turn_left
+                  0x001a12                  _Turn_180
+                  0x001a30                  _Stop
+                  0x001a3e                  _TX_side
+                  0x001a5c                  _TX_front
+                  0x001a7a                  _TX_post
 
-.dinit            0x001a9a         0xc0
- .dinit           0x001a9a         0xc0 data_init
+.dinit            0x001a98         0xc0
+ .dinit           0x001a98         0xc0 data_init
 
-.text             0x001b5a        0x17c
- .text            0x001b5a         0x88 build/default/debug/ADCfunctions.o
-                  0x001b5a                  _ADCsetup
- .text            0x001be2         0x56 build/default/debug/PWMfunctions.o
-                  0x001be2                  _pwmSetup
-                  0x001c20                  _dutycycle
- .text            0x001c38         0x3a build/default/debug/miscFunctions.o
-                  0x001c38                  _delay
-                  0x001c64                  _buzz
- .text            0x001c72         0x34 build/default/debug/QEIfunctions.o
-                  0x001c72                  _QEIsetup
- .text            0x001ca6         0x30 build/default/debug/Timer1Functions.o
-                  0x001ca6                  _timer1Setup
+.text             0x001b58        0x17c
+ .text            0x001b58         0x88 build/default/debug/ADCfunctions.o
+                  0x001b58                  _ADCsetup
+ .text            0x001be0         0x56 build/default/debug/PWMfunctions.o
+                  0x001be0                  _pwmSetup
+                  0x001c1e                  _dutycycle
+ .text            0x001c36         0x3a build/default/debug/miscFunctions.o
+                  0x001c36                  _delay
+                  0x001c62                  _buzz
+ .text            0x001c70         0x34 build/default/debug/QEIfunctions.o
+                  0x001c70                  _QEIsetup
+ .text            0x001ca4         0x30 build/default/debug/Timer1Functions.o
+                  0x001ca4                  _timer1Setup

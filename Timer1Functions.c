@@ -83,7 +83,7 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     
     /*
     if(count==10){
-    char result[100];
+    char result[100]; 
     sprintf(result, "Velocity: %f ", vel);
     mySendString(result);
     count = 0;

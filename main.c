@@ -47,8 +47,8 @@
 #include "miscFunctions.h"
 #include "QEIfunctions.h"
 
-#include <stdio.h>               // for sprintf
-#include <string.h>
+//#include <stdio.h>               // for sprintf
+//#include <string.h>
 
 /***** CONFIGURATION BITS *****/
 //primary oscillator with 8 times pll no clock switching
@@ -68,7 +68,7 @@
 #pragma config PWMPIN = RST_PWMPIN
 
 /***** EXT VARS    *****/
-extern int rollover_counter;
+//extern int rollover_counter;
 
 /***** MAIN *****/
 int main(void){
@@ -79,7 +79,7 @@ int main(void){
     UART2Setup();                      // Configures UART
     ADCsetup();
     QEIsetup();
-    
+  
     int state1 = 0, start = 0;
     int TXon = 1;
     TX_side(TXon);
@@ -116,7 +116,6 @@ int main(void){
             }
         }
     }
-  
-    return 0;                          // We should never really return
-}                                      // End function
+    }
+    return 0;                          // We should never really return                                     // End function
 }

@@ -12,6 +12,11 @@
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/UARTfunctions.c</file>
             <file>file:/Users/kieraneasdale/Documents/GitHub/Micromouse_Setup/ADCfunctions.c</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/Timer1Functions.c</file>
+            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/main.c</file>
+            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/gpIO.c</file>
+            <file>file:/Users/ollie/Documents/GitHub/Micromouse_Setup/UARTfunctions.c</file>
+        </group>
     </open-files>
 </project-private>
