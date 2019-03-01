@@ -143,6 +143,15 @@ void TX_post(int state){
 * Returns a floating point valued drive
 * Expects to receive a floating point argument as the desired velocity
 ******************************************/
+
+
+/*DO THIS
+ * void speedProfile(void)
+{	
+	getEncoderStatus();
+	updateCurrentSpeed();
+	calculateMotorPwm();      
+}*/
 void PID_controller ( float desired_velocity )
 {
 int actual_velocity; // Measured velocity ( note: this is signed int )
