@@ -67,8 +67,6 @@
 #pragma config HPOL = PWMxH_ACT_LO
 #pragma config PWMPIN = RST_PWMPIN
 
-/***** EXT VARS    *****/
-extern int rollover_counter;
 
 /***** MAIN *****/
 int main(void){

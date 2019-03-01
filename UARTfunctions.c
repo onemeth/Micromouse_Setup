@@ -57,7 +57,7 @@ void UART1Setup(void){
     IPC2bits.U1TXIP     = 3;
     IEC0bits.U1TXIE     = 1;      // Enable UART Transmit interrupt
     U1STAbits.UTXEN     = 1;      // Enable UART Tx
-
+    
     U1MODEbits.UARTEN   = 1;      // Now, enable UART!
     U1STAbits.UTXEN     = 1;      // And enable transmission (order important)
 } 
@@ -92,11 +92,11 @@ void UART2Setup(void){
     IPC6bits.U2TXIP     = 3;
     IEC1bits.U2TXIE     = 1;      // Enable UART Transmit interrupt
     U2STAbits.UTXEN     = 1;      // Enable UART Tx
-
+    
     U2MODEbits.UARTEN   = 1;      // Now, enable UART!
     U2STAbits.UTXEN     = 1;      // And enable transmission (order important)
 }   
- /********************************************************
+/********************************************************
  * Description                                          
  *      Name      : mySendString                                                
  *      Author(s) : O.Nemeth                                                  
@@ -112,12 +112,12 @@ void UART2Setup(void){
 void mySendString(char *textString){           
     static int i, len;
     len = strlen(textString);                           // Determine the string length
-        for (i = 0 ; i < len; i++) { 
-            while (U2STAbits.UTXBF);                    // Wait while Tx buffer full
-            U2TXREG = textString[i];                    // Print string 
+    for (i = 0 ; i < len; i++) { 
+        while (U2STAbits.UTXBF);                    // Wait while Tx buffer full
+        U2TXREG = textString[i];                    // Print string 
     }
 }  
- /********************************************************
+/********************************************************
  * Description                                          
  *      Name      : decode                                                
  *      Author(s) : O.Nemeth                                                  
@@ -137,11 +137,11 @@ void decode(char str){
     static int start = 0;
     static int flag = 0;
     static char array[lenstr]; 
-
+    
     
     if((str == '>') && (start == 1)){               // Stop bit detection
         vel2 = atof(array);
-      //  PID_controller(vel2);  //Dont PID here! do it in timer 1
+        //  PID_controller(vel2);  //Dont PID here! do it in timer 1
         memset(array, 0, lenstr);                   // Completely clear string
         start = 0;                                  // Reset start
         count = 0;                                  // Reset count
@@ -149,7 +149,7 @@ void decode(char str){
     if(start == 1){                                 // Continuously read until end bit '<' received
         array[count] = str;                         // Assign received char to array
         if(((array[count] <'0') || (array[count] >'9')) && (array[count] != '>')){
-           flag = 1;                                // Set flag if unwanted char appears in string
+            flag = 1;                                // Set flag if unwanted char appears in string
         }
         count++;                                    // Increment counter
     }

@@ -866,16 +866,16 @@ userdata
  .debug_abbrev    0x0005cd         0xe7 build/default/production/QEIfunctions.o
  .debug_abbrev    0x0006b4         0xfd build/default/production/ADCfunctions.o
 
-.debug_line       0x000000        0x89a
+.debug_line       0x000000        0x898
  *(.debug_line)
- .debug_line      0x000000        0x157 build/default/production/gpIO.o
- .debug_line      0x000157        0x10b build/default/production/main.o
- .debug_line      0x000262         0xf2 build/default/production/PWMfunctions.o
- .debug_line      0x000354        0x105 build/default/production/Timer1Functions.o
- .debug_line      0x000459        0x14a build/default/production/UARTfunctions.o
- .debug_line      0x0005a3         0xe2 build/default/production/miscFunctions.o
- .debug_line      0x000685         0xfe build/default/production/QEIfunctions.o
- .debug_line      0x000783        0x117 build/default/production/ADCfunctions.o
+ .debug_line      0x000000        0x155 build/default/production/gpIO.o
+ .debug_line      0x000155        0x10b build/default/production/main.o
+ .debug_line      0x000260         0xf2 build/default/production/PWMfunctions.o
+ .debug_line      0x000352        0x105 build/default/production/Timer1Functions.o
+ .debug_line      0x000457        0x14a build/default/production/UARTfunctions.o
+ .debug_line      0x0005a1         0xe2 build/default/production/miscFunctions.o
+ .debug_line      0x000683         0xfe build/default/production/QEIfunctions.o
+ .debug_line      0x000781        0x117 build/default/production/ADCfunctions.o
 
 .debug_frame      0x000000        0x500
  *(.debug_frame)
