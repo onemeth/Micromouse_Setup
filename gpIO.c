@@ -145,7 +145,7 @@ void TX_post(int state){
 ******************************************/
 void PID_controller ( float desired_velocity )
 {
-int actual_velocity=0; // Measured velocity ( note: this is signed int )
+int actual_velocity; // Measured velocity ( note: this is signed int )
 float Proportional_Component; // }
 float Derivative_Component; // } Separate components of controller
 float Integral_Component; // }

@@ -23,8 +23,9 @@
 
 
 /***** PROTOTYPES *****/
-void pwmSetup(void);                  // PWM set up prototype
-void dutycycle(int);									// Dutycycle prototype
+void pwmSetup(void);                    // PWM set up prototype
+void dutycycleL(int);                    // Dutycycle prototype
+void dutycycleR(int);
 /***** END GUARD *****/
 #endif	
 

@@ -37,12 +37,17 @@ void pwmSetup(void){
     // Set duty cycle of PWM's
     PDC1 = 1000;                // Set LH motor to 100% = 2000 duty cycle
     PDC2 = 1000;                // Set RH motor to 100% = 2000 duty cycle
-    PDC3 = 1000;                // Set buzzer to 50% duty cycle
+    PDC3 = 1000;                // Set buzzer to   050% = 1000 duty cycle
 }   
 
-void dutycycle(dc){ 
-    static int dutycycle = 0;
-    dutycycle = (2000/100)*dc;
-    PDC1 = dutycycle;           // Modify duty cycle of PWM1
-    PDC2 = dutycycle;           // Modify duty cycle of PWM2
+void dutycycleL(int dcL){ 
+    static int dutycycleL = 0;
+    dutycycleL = (2000/100)*dcL;
+    PDC1 = dutycycleL;           // Modify duty cycle of PWM1
 }                               // End function
+
+void dutycycleR(int dcR){ 
+    static int dutycycleR = 0;
+    dutycycleR = (2000/100)*dcR;
+    PDC2 = dutycycleR;           // Modify duty cycle of PWM2
+}        

@@ -47,8 +47,7 @@ void timer1Setup(void){
  *      Name      : gpIOSetup                                                  
  *      Author(s) : O.Németh                                                  
  *      ISR       : Maintains a static counter that logs
- *                  a count every 10ms. Also calls
- *                  mySendString function.              
+ *                  a count every 10ms.             
  ********************************************************
  * Change History                                       
  *      Released  : 15-11-2018                          
@@ -59,19 +58,13 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     IFS0bits.T1IF = 0;                      // Reset the timer 1 interrupt flag
     ADCON1bits.ASAM = 1;                    // start ADC sampling
     extern int rollover_counter;
-    extern float vel2;
-   // float angVel;
     static int POSsample = 0; 
-    int position;
+    static double position;
 
-    
     position = (POSCNT) + (rollover_counter*32768);
-    
-    
     vel = (position - POSsample)*0.1; 
     POSsample = position;
-    
-    //angVel = vel*(((2*3.14)/16)/(33*4));
+
  
   
 

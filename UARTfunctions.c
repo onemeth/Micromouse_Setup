@@ -149,7 +149,7 @@ void decode(char str){
     }    
     if(start == 1){                                 // Continuously read until end bit '<' received
         array[count] = str;                         // Assign received char to array
-        if((array[count] <'0') || (array[count] >'9') && (array[count] != '>')){
+        if(((array[count] <'0') || (array[count] >'9')) && (array[count] != '>')){
            flag = 1;                                // Set flag if unwanted char appears in string
         }
         count++;                                    // Increment counter
@@ -184,7 +184,6 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
         str = U1RXREG;          // Read one char at a time from the U1 RX register  
     
     decode(str);                // Call function to decode char
-   // U2TXREG = str;
 }
 
 /********************************************************
