@@ -147,7 +147,7 @@ void TX_post(int state){
  * Returns a floating point valued drive
  * Expects to receive a floating point argument as the desired velocity
  ******************************************/
-void PID_controllerL (float desired_velocity)
+void PID_controllerR (float desired_velocity)
 {
     int actual_velocity; // Measured velocity ( note: this is signed int )
     float Proportional_Component; // }
@@ -159,15 +159,15 @@ void PID_controllerL (float desired_velocity)
     static float integrator_sum = 0; // Sum of all differences between desired and actual velocities
     float error_deriv; // change in difference between desired and actual velocities
     float Kp, Ki, Kd; // PID Gains
-    extern float velL;
+    extern float velR;
     
     // Set gains (THESE MUST BE TUNED!)
     Kp = 20.0; // Proportional gain = 20.0
     Ki = 0.0; // Integral gain value is times 100, i.e. Ki=100 = 1.0
-    Kd = 1.0; // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
+    Kd = 20.0; // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
     
     // Calculate difference between desired and actual velocities, i.e., calculate ERROR
-    actual_velocity = velL; //getEncoderVelocity(); // from next weeks lecture
+    actual_velocity = velR; //getEncoderVelocity(); // from next weeks lecture
     error = desired_velocity - (float)actual_velocity; // cast an int to a float
     
     // Calculate Proportional component
@@ -194,21 +194,28 @@ void PID_controllerL (float desired_velocity)
     if(drive<-100)
         drive = -100;
     
+    int test1;
+    
+    test1 = -((int)((drive)/2));
     
     //Use drive to modify PWM1!
-    if (drive < 0) {//dc left motor slower 
-        dutycycleL(50 + (int)((drive*-1)/2)); 
+    if (drive > 0) {//dc left motor slower   
+        dutycycleR(50 + test1); 
+
     }
-    else if(drive > 0){ //dc left motor faster
-        dutycycleL(50 - (int)(drive/2)); 
+    else if(drive < 0){ //dc left motor faster
+        dutycycleR(50 - test1); 
+
     }
     
-    dutycycleR(0);
+    
+    dutycycleL(0);
+    
     
     static int countP = 0;
     if(countP==100){
         char result[100];
-        sprintf(result,"\n drive = %.1d \n", (int)drive);
+        sprintf(result,"\n velR = %.1f test1 = %d drive = %.1f \n", velR, test1, drive);
         mySendString(result);
         countP = 0;
     }

@@ -65,10 +65,10 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     velR = (position - POSsample)*0.1; 
     POSsample = position;
 
-    PID_controllerL(3);
+    PID_controllerR(0);
 
     
-    
+    /*
     static int count = 0;
     if(count==100){
     char result[100];
@@ -77,5 +77,5 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     count = 0;
     }
     count++;  
-    
+    */
 }

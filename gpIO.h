@@ -56,7 +56,7 @@ void TX_side(int);
 void TX_front(int);
 void TX_post(int);
 
-void PID_controllerL (float);
+void PID_controllerR (float);
 
 /***** END GUARD *****/
 #endif	
