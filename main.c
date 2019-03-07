@@ -47,7 +47,7 @@
 #include "miscFunctions.h"
 #include "QEIfunctions.h"
 
-#include <stdio.h>               // for sprintf
+#include <stdio.h>              
 #include <string.h>
 
 /***** CONFIGURATION BITS *****/
@@ -79,7 +79,7 @@ int main(void){
     QEIsetup();
     
     int state1 = 0, start = 0;
-    int TXon = 1;
+    int TXon = 0;
     TX_side(TXon);
     TX_front(TXon);
     TX_post(TXon);

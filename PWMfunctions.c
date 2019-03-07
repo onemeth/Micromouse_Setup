@@ -40,14 +40,17 @@ void pwmSetup(void){
     PDC3 = 1000;                // Set buzzer to   050% = 1000 duty cycle
 }   
 
+//PDC2 == LEFT WHEEL == vel2 == PIC2
 void dutycycleL(int dcL){ 
     static int dutycycleL = 0;
     dutycycleL = (2000/100)*dcL;
-    PDC1 = dutycycleL;           // Modify duty cycle of PWM1
+    PDC2 = dutycycleL;           // Modify duty cycle of PWM2
+
 }                               // End function
 
+//PDC1 == RIGHT WHEEL == vel == PIC1
 void dutycycleR(int dcR){ 
     static int dutycycleR = 0;
     dutycycleR = (2000/100)*dcR;
-    PDC2 = dutycycleR;           // Modify duty cycle of PWM2
+    PDC1 = dutycycleR;           // Modify duty cycle of PWM1
 }        

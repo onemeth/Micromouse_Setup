@@ -63,6 +63,9 @@ void Move_forwards_one_cell(void){
         MTR_LB = 0;
         MTR_RF = 1;
         MTR_RB = 0; 
+        //PID_controllerL
+        //PID_controllerR
+        //PID_controller_SENSOR
     }
     Stop(); 
 }
@@ -144,16 +147,7 @@ void TX_post(int state){
  * Returns a floating point valued drive
  * Expects to receive a floating point argument as the desired velocity
  ******************************************/
-
-
-/*DO THIS
- * void speedProfile(void)
- {	
- getEncoderStatus();
- updateCurrentSpeed();
- calculateMotorPwm();      
- }*/
-void PID_controller ( float desired_velocity )
+void PID_controllerL (float desired_velocity)
 {
     int actual_velocity; // Measured velocity ( note: this is signed int )
     float Proportional_Component; // }
@@ -165,15 +159,15 @@ void PID_controller ( float desired_velocity )
     static float integrator_sum = 0; // Sum of all differences between desired and actual velocities
     float error_deriv; // change in difference between desired and actual velocities
     float Kp, Ki, Kd; // PID Gains
-    extern float vel;
+    extern float velL;
     
     // Set gains (THESE MUST BE TUNED!)
-    Kp = 20.0; // Proportional gain
-    Ki = 1.0; // Integral gain value is times 100, i.e. Ki=100
-    Kd = 20.0; // Derivative gain is value divide by 100, i.e. Kd=.2
+    Kp = 20.0; // Proportional gain = 20.0
+    Ki = 0.0; // Integral gain value is times 100, i.e. Ki=100 = 1.0
+    Kd = 1.0; // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
     
     // Calculate difference between desired and actual velocities, i.e., calculate ERROR
-    actual_velocity = vel; //getEncoderVelocity(); // from next weeks lecture
+    actual_velocity = velL; //getEncoderVelocity(); // from next weeks lecture
     error = desired_velocity - (float)actual_velocity; // cast an int to a float
     
     // Calculate Proportional component
@@ -194,17 +188,27 @@ void PID_controller ( float desired_velocity )
     error_1 = error; // update previous error for next control iteration
     drive = Proportional_Component + Integral_Component + Derivative_Component ; // sum the components
     
+    
+    if(drive>100)
+        drive = 100;
+    if(drive<-100)
+        drive = -100;
+    
+    
     //Use drive to modify PWM1!
-    if (drive > 0) {//dc left motor slower 
-        dutycycleL(50 - (int)drive); 
+    if (drive < 0) {//dc left motor slower 
+        dutycycleL(50 + (int)((drive*-1)/2)); 
     }
-    else if(drive < 0){ //dc left motor faster
-        dutycycleL(50 + (int)drive); 
+    else if(drive > 0){ //dc left motor faster
+        dutycycleL(50 - (int)(drive/2)); 
     }
+    
+    dutycycleR(0);
+    
     static int countP = 0;
-    if(countP==10){
+    if(countP==100){
         char result[100];
-        sprintf(result,"\n drive = %.1e \n", (double)drive);
+        sprintf(result,"\n drive = %.1d \n", (int)drive);
         mySendString(result);
         countP = 0;
     }
