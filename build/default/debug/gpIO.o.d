@@ -1,3 +1,5 @@
 build/default/debug/gpIO.o:  \
 gpIO.c  \
-gpIO.h 
+gpIO.h  \
+UARTfunctions.h  \
+PWMfunctions.h 

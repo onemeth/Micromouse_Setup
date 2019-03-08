@@ -35,14 +35,14 @@ void pwmSetup(void){
     PWMCON1bits.PEN3H = 0;      // Disable PWM 3 high-side driver     
     PTCONbits.PTEN    = 1;      // Switch on the PWM generator
     // Set duty cycle of PWM's
-    PDC1 = 1000;                // Set LH motor to 100% = 2000 duty cycle
-    PDC2 = 1000;                // Set RH motor to 100% = 2000 duty cycle
+    PDC1 = 0;                   // Set LH motor to 100% = 2000 duty cycle
+    PDC2 = 0;                   // Set RH motor to 100% = 2000 duty cycle
     PDC3 = 1000;                // Set buzzer to   050% = 1000 duty cycle
 }   
 
 //PDC2 == LEFT WHEEL == vel2 == PIC2
 void dutycycleL(int dcL){ 
-    static int dutycycleL = 0;
+    int dutycycleL = 0;
     dutycycleL = (2000/100)*dcL;
     PDC2 = dutycycleL;           // Modify duty cycle of PWM2
 
@@ -50,7 +50,7 @@ void dutycycleL(int dcL){
 
 //PDC1 == RIGHT WHEEL == vel == PIC1
 void dutycycleR(int dcR){ 
-    static int dutycycleR = 0;
+    int dutycycleR = 0;
     dutycycleR = (2000/100)*dcR;
     PDC1 = dutycycleR;           // Modify duty cycle of PWM1
 }        

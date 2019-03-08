@@ -84,6 +84,11 @@ int main(void){
     TX_front(TXon);
     TX_post(TXon);
     
+    MTR_LF = 1;
+    MTR_LB = 0;
+    MTR_RF = 1;
+    MTR_RB = 0;
+    
     while(1){                          // Infinite loop  *
         if (BUTTON && !state1){
             state1 = 1;
@@ -92,28 +97,18 @@ int main(void){
         if (state1 && !BUTTON){
         state1=0;
         }
+       
+        float speed = 4;
+        PID_controllerR(speed);
+        PID_controllerL(speed);
+
         
         if(start){   
-            delay(1000);
+
             while(start){
-            if(RX_RF < 1 && RX_LF < 1)
-              Move_forwards();
-            else if((RX_RF > 2 || RX_LF > 2) && RX_LS > 2)
-                Turn_right();
-            else if((RX_RF > 1 || RX_LF > 1) && RX_RS > 2)
-                Turn_left();
-            else if((RX_RF > 1 && RX_LF > 1) && (RX_LS > 2 && RX_RS > 2))
-                Turn_180();    
-            else if(RX_RF > 1 && RX_LF > 1)
-                Turn_right(); 
-            else if (state1 && !BUTTON)
-            state1=0;
-            else if (BUTTON && !state1){
-            state1 = 1;
-            start = 0;
+
             }
         }
-    }
     }
     return 0;                          // We should never really return
                                       // End function 
