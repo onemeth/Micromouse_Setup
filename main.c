@@ -97,9 +97,6 @@ int main(void){
         if(start){   
           //  delay(2000);
             while(start){
-                float speed = 6;
-                PID_controllerR(speed);
-                PID_controllerL(speed);
             }
         }
     }

@@ -36,7 +36,7 @@ void timer1Setup(void){
     T1CONbits.TSIDL = 1;        // stop timer in idle mode
     T1CONbits.TGATE = 0;        // do not gate the timer
     IFS0bits.T1IF   = 0;        // clear the interrupt flag
-    IPC0bits.T1IP   = 3;        // choose interrupt priority
+    IPC0bits.T1IP   = 1;        // choose interrupt priority
     IEC0bits.T1IE   = 1;        // enable Timer1 interrupt
     T1CONbits.TON   = 1;        // switches the Timer 1 on!
 }   
@@ -59,17 +59,44 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     ADCON1bits.ASAM = 1;                    // start ADC sampling
     extern int rollover_counter;
     static int POSsample = 0, position; 
-    static count = 0;
     
-    if(count == 1){
-        Stop();
+    /*
+   
+    if(count == 1000){
+        PID_controllerR(0);
+        PID_controllerL(0);
+       // Stop();
         count = 0;
     }
-    else {
+    else if(count > 900){
         Move_forwards();
+        float speed = 6;
+        PID_controllerR(speed);
+        PID_controllerL(speed);
+        
     }
     count++;
-    
+    */
+   
+        static int speed =0;
+        static int count = 0;
+        static int countl = 0;
+        Move_forwards();
+        
+        PID_controllerR(speed);
+        PID_controllerL(speed);
+        
+        if(countl = 10000){
+        if(count <= 6)
+            speed++;
+        if(count > 6 && count <= 12)
+            speed--;
+        if(count == 13)
+            count =0;
+        countl = 0;
+        }
+        countl++;
+        
     position = (POSCNT) + (rollover_counter*32768);
     velR = (position - POSsample)*0.1; 
     POSsample = position;

@@ -124,10 +124,10 @@ void Turn_180(void){
 }
 
 void Stop(void){
-    MTR_LF = 0;
-    MTR_LB = 0;
-    MTR_RF = 0;
-    MTR_RB = 0;
+    MTR_LF = 1;
+    MTR_LB = 1;
+    MTR_RF = 1;
+    MTR_RB = 1;
 }
 
 void TX_side(int state){
@@ -228,7 +228,7 @@ void PID_controllerL(float desired_velocity)
     int PDC_Val;                                    // Value to send to control PDC
     
     // Set gains (THESE MUST BE TUNED!)
-    Kp = 7; //25                                   // Proportional gain = 20.0
+    Kp = 8; //25                                   // Proportional gain = 20.0
     //Ki = 0;                                         // Integral gain value is times 100, i.e. Ki=100 = 1.0
     Kd = 3; //0.25                                 // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
     
@@ -256,8 +256,10 @@ void PID_controllerL(float desired_velocity)
     drive = Proportional_Component + Derivative_Component ; // sum the components
     
     if (drive < 0)                                  // Slow down!
+      // Move_backwards(); 
        PDC_Val = ((int)(drive*-1)/100);                   // Set PDC to lower value
     if(drive > 0){                             // Speed up!
+      //  Move_forwards();
         PDC_Val = (int)100*((drive));                // Set PDC to higher value
     }    
     if(PDC_Val > 2000)                          // Set PDC's max value
