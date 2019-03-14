@@ -84,10 +84,6 @@ int main(void){
     TX_front(TXon);
     TX_post(TXon);
     
-    MTR_LF = 1;
-    MTR_LB = 0;
-    MTR_RF = 1;
-    MTR_RB = 0;
     
     while(1){                          // Infinite loop  *
         if (BUTTON && !state1){
@@ -98,15 +94,12 @@ int main(void){
         state1=0;
         }
        
-        float speed = 4;
-        PID_controllerR(speed);
-        PID_controllerL(speed);
-
-        
         if(start){   
-
+            delay(2000);
             while(start){
-
+                float speed = 6;
+                PID_controllerR(speed);
+                PID_controllerL(speed);
             }
         }
     }

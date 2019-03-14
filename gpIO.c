@@ -164,8 +164,8 @@ void PID_controllerR(float desired_velocity)
     int PDC_Val;                                    // Value to send to control PDC
     
     // Set gains (THESE MUST BE TUNED!)
-    Kp = 3; //25                                      // Proportional gain = 20.0
-    Kd = 1; //0.25                                      // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
+    Kp = 5; //25                                      // Proportional gain = 20.0
+    Kd = 3; //0.25                                      // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
     
     // Calculate difference between desired and actual velocities, i.e., calculate ERROR
     actual_velocity = velR;                         //getEncoderVelocity(); // from next weeks lecture
@@ -194,10 +194,10 @@ void PID_controllerR(float desired_velocity)
     PDC1 = PDC_Val;
     
     static int countP = 0;
-    if(countP==10000){
+    if(countP==100){
         char result[100];
         //sprintf(result," drive = %.1f VelR = %.3f PDC_Val = %d", drive, velR, PDC_Val);
-        sprintf(result," VelR = %.3f ", velR);
+        sprintf(result," %.3f ", velR);
         mySendString(result);
         countP = 0;
     }
@@ -214,20 +214,23 @@ void PID_controllerR(float desired_velocity)
  ******************************************/
 void PID_controllerL(float desired_velocity)
 {
-    int actual_velocity;                            // Measured velocity ( note: this is signed int )
-    float Proportional_Component;                   // }
-    float Derivative_Component;                     // } Separate components of controller
-    float drive;                                   // Output of the controller
-    float error;                                    // Difference between desired and actual velocities
-    static float error_1 = 0;                       // Previous difference between desired and actual velocities
-    float error_deriv;                              // change in difference between desired and actual velocities
-    float Kp, Kd;                                   // PID Gains
+    int actual_velocity; // Measured velocity ( note: this is signed int )
+    float Proportional_Component; // }
+    float Derivative_Component; // } Separate components of controller
+    float Integral_Component; // }
+    float drive ; // Output of the controller
+    float error; // Difference between desired and actual velocities
+    static float error_1 = 0; // Previous difference between desired and actual velocities
+    static float integrator_sum = 0; // Sum of all differences between desired and actual velocities
+    float error_deriv; // change in difference between desired and actual velocities
+    float Kp, Ki, Kd; // PID Gains
     extern float velL;
     int PDC_Val;                                    // Value to send to control PDC
     
     // Set gains (THESE MUST BE TUNED!)
-    Kp = 3; //25                                      // Proportional gain = 20.0
-    Kd = 1; //0.25                                      // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
+    Kp = 7; //25                                   // Proportional gain = 20.0
+    //Ki = 0;                                         // Integral gain value is times 100, i.e. Ki=100 = 1.0
+    Kd = 3; //0.25                                 // Derivative gain is value divide by 100, i.e. Kd=.2 = 20.0
     
     // Calculate difference between desired and actual velocities, i.e., calculate ERROR
     actual_velocity = velL;                         //getEncoderVelocity(); // from next weeks lecture
@@ -236,14 +239,21 @@ void PID_controllerL(float desired_velocity)
     // Calculate Proportional component
     Proportional_Component = error * Kp;
 
+        // Calculate Integral component
+//    if(integrator_sum > 32000) //32000
+//        integrator_sum = 32000; // To prevent integral overflow
+//    if(integrator_sum < -32000)
+//        integrator_sum = -32000; // To prevent integral underflow
+//    
+//    integrator_sum = integrator_sum + error; // update the integral sum with current error
+//    Integral_Component = integrator_sum * Ki;
+    
     // Calculate Derivative component
-    error_deriv = error - error_1;                  // current error ? previous error
+    error_deriv = error - error_1; // current error ? previous error
     Derivative_Component = error_deriv * Kd;
-    error_1 = error;                                // update previous error for next control iteration
-    
-    // sum the components
-    drive = Proportional_Component + Derivative_Component ; 
-    
+    error_1 = error; // update previous error for next control iteration
+    //drive = Proportional_Component + Integral_Component + Derivative_Component ; // sum the components
+    drive = Proportional_Component + Derivative_Component ; // sum the components
     
     if (drive < 0)                                  // Slow down!
        PDC_Val = ((int)(drive*-1)/100);                   // Set PDC to lower value
@@ -255,13 +265,16 @@ void PID_controllerL(float desired_velocity)
     //dutycycleR(PDC_Val);                            // Adjust Speed
     PDC2 = PDC_Val;
     
-    static int countP = 0;
-    if(countP==10000){
-        char result[100];
+    //static int countP = 0;
+    //if(countP==10000){
+        //char result[100];
         //sprintf(result," drive = %.1f VelL = %.3f PDC_Val = %d", drive, velL, PDC_Val);
-        sprintf(result," VelL = %.3f ", velL);
-        mySendString(result);
-        countP = 0;
-    }
-    countP++; 
+        //sprintf(result," VelL = %.3f ", velL);
+        //mySendString(result);
+        //countP = 0;
+    //}
+    //countP++; 
 }
+
+
+    
