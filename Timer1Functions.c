@@ -60,19 +60,15 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     extern int rollover_counter;
     static int POSsample = 0, position; 
     static count = 0;
-    if(count >  100){
-        MTR_LF = 0;
-        MTR_LB = 0;
-        MTR_RF = 0;
-        MTR_RB = 0;
-        //count = 0;
+    
+    if(count == 1){
+        Stop();
+        count = 0;
     }
     else {
-        MTR_LF = 1;
-        MTR_LB = 0;
-        MTR_RF = 1;
-        MTR_RB = 0;
+        Move_forwards();
     }
+    count++;
     
     position = (POSCNT) + (rollover_counter*32768);
     velR = (position - POSsample)*0.1; 
@@ -88,5 +84,5 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt(void){
     }
     count++;  
      */
-    count++;
+    
 }
